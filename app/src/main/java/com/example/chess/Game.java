@@ -16,12 +16,7 @@ public class Game {
 
         board.resetBoard();
 
-        if (p1.isWhiteSide()) {
-            this.currentTurn = p1;
-        }
-        else {
-            this.currentTurn = p2;
-        }
+        this.currentTurn = p1;
 
         movesPlayed.clear();
     }

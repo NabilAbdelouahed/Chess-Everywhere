@@ -54,8 +54,8 @@ public class ChooseTimer extends AppCompatActivity {
     }
 
     public void no_timer_start(View view) {
-
+        Intent intent = new Intent(ChooseTimer.this, NoTimerGame.class);
+        startActivity(intent);
     }
-
 
 }

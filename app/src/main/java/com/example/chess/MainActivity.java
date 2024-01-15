@@ -29,5 +29,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void switch_to_free_mode_view(View view) {
+        Intent intent = new Intent(MainActivity.this, FreeMode.class);
+        startActivity(intent);
     }
 }
