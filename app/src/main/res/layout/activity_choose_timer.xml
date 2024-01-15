@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#FFFFFF"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ChooseTimer">
+
+    <TextView
+        android:id="@+id/bullet"
+        android:layout_width="60dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="68dp"
+        android:text="Bullet"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.535"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/blitz_min"
+        android:layout_width="130dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="340dp"
+        android:text="3 min"
+        android:onClick="timer_start"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.206"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/rapid_min_sec"
+        android:layout_width="130dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="544dp"
+        android:text="10 min + 1s"
+        android:onClick="timer_start"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.832"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/no_timer"
+        android:layout_width="130dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="692dp"
+        android:text="No timer"
+        android:onClick="no_timer_start"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.537"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/blitz_min_sec"
+        android:layout_width="130dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="344dp"
+        android:text="3 min + 1s"
+        android:onClick="timer_start"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.832"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/rapid_min"
+        android:layout_width="130dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="544dp"
+        android:text="10 min"
+        android:onClick="timer_start"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.206"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/bullet_min_sec"
+        android:layout_width="130dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="132dp"
+        android:text="1 min + 1s"
+        android:onClick="timer_start"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.832"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/rapid"
+        android:layout_width="130dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="484dp"
+        android:text="Rapid"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.633"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/blitz"
+        android:layout_width="130dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="272dp"
+        android:text="Blitz"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.669"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/bullet_min"
+        android:layout_width="130dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="132dp"
+        android:text="1 min"
+        android:onClick="timer_start"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.206"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
