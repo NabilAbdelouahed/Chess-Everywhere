@@ -85,6 +85,7 @@
             android:layout_height="45dp"
             android:layout_weight="1"
             android:background="@drawable/green_tile"
+            android:src="@drawable/black_rook_rotated"
             android:scaleType="centerCrop"
             android:onClick="show_moves"/>
         <ImageButton
@@ -93,6 +94,7 @@
             android:layout_height="45dp"
             android:layout_weight="1"
             android:background="@drawable/white_tile"
+            android:src="@drawable/black_knight_rotated"
             android:scaleType="centerCrop"
             android:onClick="show_moves"/>
         <ImageButton
@@ -101,6 +103,7 @@
             android:layout_height="45dp"
             android:layout_weight="1"
             android:background="@drawable/green_tile"
+            android:src="@drawable/black_bishop_rotated"
             android:scaleType="centerCrop"
             android:onClick="show_moves"/>
         <ImageButton
@@ -109,6 +112,7 @@
             android:layout_height="45dp"
             android:layout_weight="1"
             android:background="@drawable/white_tile"
+            android:src="@drawable/black_king_rotated"
             android:scaleType="centerCrop"
             android:onClick="show_moves"/>
         <ImageButton
@@ -117,6 +121,7 @@
             android:layout_height="45dp"
             android:layout_weight="1"
             android:background="@drawable/green_tile"
+            android:src="@drawable/black_queen_rotated"
             android:scaleType="centerCrop"
             android:onClick="show_moves"/>
         <ImageButton
@@ -125,6 +130,7 @@
             android:layout_height="45dp"
             android:layout_weight="1"
             android:background="@drawable/white_tile"
+            android:src="@drawable/black_bishop_rotated"
             android:scaleType="centerCrop"
             android:onClick="show_moves"/>
         <ImageButton
@@ -133,6 +139,7 @@
             android:layout_height="45dp"
             android:layout_weight="1"
             android:background="@drawable/green_tile"
+            android:src="@drawable/black_knight_rotated"
             android:scaleType="centerCrop"
             android:onClick="show_moves"/>
         <ImageButton
@@ -141,6 +148,7 @@
             android:layout_height="45dp"
             android:layout_weight="1"
             android:background="@drawable/white_tile"
+            android:src="@drawable/black_rook_rotated"
             android:scaleType="centerCrop"
             android:onClick="show_moves"/>
         <ImageButton
@@ -149,6 +157,7 @@
             android:layout_height="45dp"
             android:layout_weight="1"
             android:background="@drawable/white_tile"
+            android:src="@drawable/black_pawn_rotated"
             android:scaleType="centerCrop"
             android:onClick="show_moves"/>
         <ImageButton
@@ -157,6 +166,7 @@
             android:layout_height="45dp"
             android:layout_weight="1"
             android:background="@drawable/green_tile"
+            android:src="@drawable/black_pawn_rotated"
             android:scaleType="centerCrop"
             android:onClick="show_moves"/>
         <ImageButton
@@ -165,6 +175,7 @@
             android:layout_height="45dp"
             android:layout_weight="1"
             android:background="@drawable/white_tile"
+            android:src="@drawable/black_pawn_rotated"
             android:scaleType="centerCrop"
             android:onClick="show_moves"/>
         <ImageButton
@@ -173,6 +184,7 @@
             android:layout_height="45dp"
             android:layout_weight="1"
             android:background="@drawable/green_tile"
+            android:src="@drawable/black_pawn_rotated"
             android:scaleType="centerCrop"
             android:onClick="show_moves"/>
         <ImageButton
@@ -181,6 +193,7 @@
             android:layout_height="45dp"
             android:layout_weight="1"
             android:background="@drawable/white_tile"
+            android:src="@drawable/black_pawn_rotated"
             android:scaleType="centerCrop"
             android:onClick="show_moves"/>
         <ImageButton
@@ -189,6 +202,7 @@
             android:layout_height="45dp"
             android:layout_weight="1"
             android:background="@drawable/green_tile"
+            android:src="@drawable/black_pawn_rotated"
             android:scaleType="centerCrop"
             android:onClick="show_moves"/>
         <ImageButton
@@ -197,6 +211,7 @@
             android:layout_height="45dp"
             android:layout_weight="1"
             android:background="@drawable/white_tile"
+            android:src="@drawable/black_pawn_rotated"
             android:scaleType="centerCrop"
             android:onClick="show_moves"/>
         <ImageButton
@@ -205,6 +220,7 @@
             android:layout_height="45dp"
             android:layout_weight="1"
             android:background="@drawable/green_tile"
+            android:src="@drawable/black_pawn_rotated"
             android:scaleType="centerCrop"
             android:onClick="show_moves"/>
         <ImageButton
@@ -467,6 +483,7 @@
             android:layout_height="45dp"
             android:layout_weight="1"
             android:background="@drawable/green_tile"
+            android:src="@drawable/white_pawn"
             android:scaleType="centerCrop"
             android:onClick="show_moves"/>
         <ImageButton
@@ -475,6 +492,7 @@
             android:layout_height="45dp"
             android:layout_weight="1"
             android:background="@drawable/white_tile"
+            android:src="@drawable/white_pawn"
             android:scaleType="centerCrop"
             android:onClick="show_moves"/>
         <ImageButton
@@ -483,6 +501,7 @@
             android:layout_height="45dp"
             android:layout_weight="1"
             android:background="@drawable/green_tile"
+            android:src="@drawable/white_pawn"
             android:scaleType="centerCrop"
             android:onClick="show_moves"/>
         <ImageButton
@@ -491,6 +510,7 @@
             android:layout_height="45dp"
             android:layout_weight="1"
             android:background="@drawable/white_tile"
+            android:src="@drawable/white_pawn"
             android:scaleType="centerCrop"
             android:onClick="show_moves"/>
         <ImageButton
@@ -499,6 +519,7 @@
             android:layout_height="45dp"
             android:layout_weight="1"
             android:background="@drawable/green_tile"
+            android:src="@drawable/white_pawn"
             android:scaleType="centerCrop"
             android:onClick="show_moves"/>
         <ImageButton
@@ -507,6 +528,7 @@
             android:layout_height="45dp"
             android:layout_weight="1"
             android:background="@drawable/white_tile"
+            android:src="@drawable/white_pawn"
             android:scaleType="centerCrop"
             android:onClick="show_moves"/>
         <ImageButton
@@ -515,6 +537,7 @@
             android:layout_height="45dp"
             android:layout_weight="1"
             android:background="@drawable/green_tile"
+            android:src="@drawable/white_pawn"
             android:scaleType="centerCrop"
             android:onClick="show_moves"/>
         <ImageButton
@@ -523,6 +546,7 @@
             android:layout_height="45dp"
             android:layout_weight="1"
             android:background="@drawable/white_tile"
+            android:src="@drawable/white_pawn"
             android:scaleType="centerCrop"
             android:onClick="show_moves"/>
         <ImageButton
@@ -531,6 +555,7 @@
             android:layout_height="45dp"
             android:layout_weight="1"
             android:background="@drawable/white_tile"
+            android:src="@drawable/white_rook"
             android:scaleType="centerCrop"
             android:onClick="show_moves"/>
         <ImageButton
@@ -539,6 +564,7 @@
             android:layout_height="45dp"
             android:layout_weight="1"
             android:background="@drawable/green_tile"
+            android:src="@drawable/white_knight"
             android:scaleType="centerCrop"
             android:onClick="show_moves"/>
         <ImageButton
@@ -547,6 +573,7 @@
             android:layout_height="45dp"
             android:layout_weight="1"
             android:background="@drawable/white_tile"
+            android:src="@drawable/white_bishop"
             android:scaleType="centerCrop"
             android:onClick="show_moves"/>
         <ImageButton
@@ -555,6 +582,7 @@
             android:layout_height="45dp"
             android:layout_weight="1"
             android:background="@drawable/green_tile"
+            android:src="@drawable/white_king"
             android:scaleType="centerCrop"
             android:onClick="show_moves"/>
         <ImageButton
@@ -563,6 +591,7 @@
             android:layout_height="45dp"
             android:layout_weight="1"
             android:background="@drawable/white_tile"
+            android:src="@drawable/white_queen"
             android:scaleType="centerCrop"
             android:onClick="show_moves"/>
         <ImageButton
@@ -571,6 +600,7 @@
             android:layout_height="45dp"
             android:layout_weight="1"
             android:background="@drawable/green_tile"
+            android:src="@drawable/white_bishop"
             android:scaleType="centerCrop"
             android:onClick="show_moves"/>
         <ImageButton
@@ -579,6 +609,7 @@
             android:layout_height="45dp"
             android:layout_weight="1"
             android:background="@drawable/white_tile"
+            android:src="@drawable/white_knight"
             android:scaleType="centerCrop"
             android:onClick="show_moves"/>
         <ImageButton
@@ -587,6 +618,7 @@
             android:layout_height="45dp"
             android:layout_weight="1"
             android:background="@drawable/green_tile"
+            android:src="@drawable/white_rook"
             android:scaleType="centerCrop"
             android:onClick="show_moves"/>
 
