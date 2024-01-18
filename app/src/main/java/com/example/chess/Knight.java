@@ -20,5 +20,10 @@ public class Knight extends Piece {
         int y = Math.abs(start.getY() - end.getY());
         return x * y == 2;
     }
+    @Override
+    public String getDrawable(boolean white){
+        if (white==false){return ("black_knight_rotated");}
+        return ("white_knight");
+    }
 }
 

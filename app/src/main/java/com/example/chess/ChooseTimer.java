@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 public class ChooseTimer extends AppCompatActivity {
@@ -21,40 +22,44 @@ public class ChooseTimer extends AppCompatActivity {
     public void timer_start(View view) {
         int id = view.getId() ;
         String gameType = getResources().getResourceEntryName(id);
-        if (gameType == "bullet_min"){
+        if (gameType.equals("bullet_min") ){
             time = 1;
             addTime = false;
         }
-        else if (gameType == "blitz_min"){
+        else if (gameType.equals("blitz_min")){
             time = 3;
             addTime = false;
 
         }
-        else if (gameType == "rapid_min"){
+        else if (gameType.equals("rapid_min")){
             time = 10;
             addTime = false;
         }
-        else if (gameType == "bullet_min_sec"){
+        else if (gameType.equals("bullet_min_sec")){
             time = 1;
             addTime = true;
         }
-        else if (gameType == "blitz_min_sec"){
+        else if (gameType.equals("blitz_min_sec")){
             time = 3;
             addTime = true;
 
         }
-        else if (gameType == "rapid_min_sec"){
+        else if (gameType.equals("rapid_min_sec")){
             time = 10;
             addTime = true;
         }
         Intent intent = new Intent(ChooseTimer.this, TimerGame.class);
         intent.putExtra("time", time);
-        intent.putExtra("addTime", time);
+        intent.putExtra("addTime", addTime);
         startActivity(intent);
     }
 
     public void no_timer_start(View view) {
-        Intent intent = new Intent(ChooseTimer.this, NoTimerGame.class);
+        time = -1;
+        addTime = false;
+        Intent intent = new Intent(ChooseTimer.this, TimerGame.class);
+        intent.putExtra("time", time);
+        intent.putExtra("addTime", addTime);
         startActivity(intent);
     }
 

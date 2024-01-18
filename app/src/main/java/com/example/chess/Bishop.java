@@ -20,4 +20,9 @@ public class Bishop extends Piece {
         int y = Math.abs(start.getY() - end.getY());
         return x == y ;
     }
+    @Override
+    public String getDrawable(boolean white){
+        if (white==false){return ("black_bishop_rotated");}
+        return ("white_bishop");
+    }
 }

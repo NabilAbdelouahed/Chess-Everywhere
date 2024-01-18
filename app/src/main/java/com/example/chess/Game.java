@@ -3,7 +3,7 @@ package com.example.chess;
 import java.util.List;
 
 public class Game {
-    private Player[] players;
+    /*private Player[] players;
     private Board board;
     private Player currentTurn;
     private GameStatus status;
@@ -105,6 +105,6 @@ public class Game {
         }
 
         return true;
-    }
+    }*/
 }
 

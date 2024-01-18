@@ -34,4 +34,9 @@ public class Pawn extends Piece{
         }
         return false;
     }
+    @Override
+    public String getDrawable(boolean white){
+        if (white==false){return ("black_pawn_rotated");}
+        return ("white_pawn");
+    }
 }

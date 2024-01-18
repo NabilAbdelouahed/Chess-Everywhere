@@ -19,4 +19,9 @@ public class Rook extends Piece{
         int y = Math.abs(start.getY() - end.getY());
         return ((x==0 && y >0) || (y == 0 && x>0));
     }
+    @Override
+    public String getDrawable(boolean white){
+        if (white==false){return ("black_rook_rotated");}
+        return ("white_rook");
+    }
 }

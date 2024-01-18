@@ -1,7 +1,6 @@
 package com.example.chess;
 
 public abstract class Piece {
-
     private boolean killed = false;
     private boolean white = false;
 
@@ -29,6 +28,7 @@ public abstract class Piece {
     {
         this.killed = killed;
     }
+    public abstract String getDrawable(boolean white);
 
     public abstract boolean canMove(Board board,
                                     Tile start, Tile end);

@@ -95,5 +95,10 @@ public class King extends Piece {
         }
         return false;
     }
+    @Override
+    public String getDrawable(boolean white){
+        if (white==false){return ("black_king_rotated");}
+        return ("white_king");
+    }
 }
 

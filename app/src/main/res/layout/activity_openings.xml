@@ -3,9 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
+    android:background="#333333"
+    android:gravity="bottom|center_horizontal"
     android:orientation="vertical"
-    android:gravity="center_horizontal"
     tools:context=".Openings">
 
 
@@ -16,9 +17,10 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Some well-known openings"
         android:gravity="center"
-        android:textSize="18sp"/>
+        android:text="Some well-known openings"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
 
     <Space
         android:layout_width="match_parent"
@@ -28,72 +30,75 @@
         android:id="@+id/op1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="The King's Pawn Opening (e4)"
-        android:onClick="switch_to_opening_info"/>
+        android:onClick="switch_to_opening_info"
+        android:text="The King's Pawn Opening (e4)" />
 
     <Button
         android:id="@+id/op2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="The Queen's Pawn Opening (d4)"
-        android:onClick="switch_to_opening_info"/>
+        android:onClick="switch_to_opening_info"
+        android:text="The Queen's Pawn Opening (d4)" />
 
     <Button
         android:id="@+id/op3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="The Sicilian Defense (c5)"
-        android:onClick="switch_to_opening_info"/>
+        android:onClick="switch_to_opening_info"
+        android:text="The Sicilian Defense (c5)" />
 
     <Button
         android:id="@+id/op4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="The Ruy Lopez (Bb5)"
-        android:onClick="switch_to_opening_info"/>
+        android:onClick="switch_to_opening_info"
+        android:text="The Ruy Lopez (Bb5)" />
 
     <Button
         android:id="@+id/op5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="The French Defense (e6)"
-        android:onClick="switch_to_opening_info"/>
+        android:onClick="switch_to_opening_info"
+        android:text="The French Defense (e6)" />
 
     <Button
         android:id="@+id/op6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="The English Opening (c4)"
-        android:onClick="switch_to_opening_info"/>
+        android:onClick="switch_to_opening_info"
+        android:text="The English Opening (c4)" />
 
     <Button
         android:id="@+id/op7"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="The Italian Game (Bc4)"
-        android:onClick="switch_to_opening_info"/>
+        android:onClick="switch_to_opening_info"
+        android:text="The Italian Game (Bc4)" />
 
     <Button
         android:id="@+id/op8"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="The Caro-Kann Defense (c6)"
-        android:onClick="switch_to_opening_info"/>
+        android:onClick="switch_to_opening_info"
+        android:text="The Caro-Kann Defense (c6)" />
 
     <Button
         android:id="@+id/op9"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="The Slav Defense"
-        android:onClick="switch_to_opening_info"/>
+        android:onClick="switch_to_opening_info"
+        android:text="The Slav Defense" />
 
     <Button
         android:id="@+id/op10"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="The Nimzo-Indian Defense"
-        android:onClick="switch_to_opening_info"/>
+        android:onClick="switch_to_opening_info"
+        android:text="The Nimzo-Indian Defense" />
 
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 
 </androidx.appcompat.widget.LinearLayoutCompat>

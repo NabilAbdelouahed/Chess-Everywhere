@@ -19,4 +19,9 @@ public class Queen extends Piece{
         int y = Math.abs(start.getY() - end.getY());
         return (x == y || ((x==0 && y >0) || (y == 0 && x>0)));
     }
+    @Override
+    public String getDrawable(boolean white){
+        if (white==false){return ("black_queen_rotated");}
+        return ("white_queen");
+    }
 }

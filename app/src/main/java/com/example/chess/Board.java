@@ -1,7 +1,7 @@
 package com.example.chess;
 
 public class Board {
-    Tile[][] boxes;
+    Tile[][] boxes = new Tile[8][8];
 
     public Board()
     {
