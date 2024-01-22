@@ -31,7 +31,7 @@ public class Pawn extends Piece{
             return true;
         }
         // Check for capture move
-        if (Math.abs(y) == 1 && x == direction ) {
+        if (Math.abs(y) == 1 && x == direction && end.getPiece() != null ) {
             return true;
         }
         return false;
