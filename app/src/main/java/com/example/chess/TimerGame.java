@@ -4,11 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import java.util.List;
+import java.util.Locale;
 
 public class TimerGame extends AppCompatActivity {
     private Player[] players = new Player[2];
@@ -19,43 +22,45 @@ public class TimerGame extends AppCompatActivity {
     private ImageButton[][] buttons = new ImageButton[8][8];
     private Player currentTurn;
     private GameStatus status;
-    private List<Move> movesPlayed;
+    private ChessTimer timerPlayer1;
+    private ChessTimer timerPlayer2;
+    private long extraTime = 1000;
+    public int time = -1;
+    private TextView timerTextViewPlayer1;
+    private TextView timerTextViewPlayer2;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timer_game);
         Intent intent = getIntent();
-        int time = intent.getIntExtra("time",0);
+        time = intent.getIntExtra("time",-1);
         boolean addTime = intent.getBooleanExtra("addTime",false);
         board.resetBoard();
         mapTilesToButtons();
 
 
 
-//        Player p1 = new Player(true);
-//        Player p2 = new Player(false);
-//        players[0] = p1;
-//        players[1] = p2;
-//        currentTurn = p1;
-//
-//        movesPlayed.clear();
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//        // set the current turn to the other player
-//        if (this.currentTurn == players[0]) {
-//            this.currentTurn = players[1];
-//        }
-//        else {
-//            this.currentTurn = players[0];
-//        }
+        Player p1 = new Player(true);
+        Player p2 = new Player(false);
+        players[0] = p1;
+        players[1] = p2;
+        currentTurn = p1;
+
+        if (time != -1 ) {
+            timerTextViewPlayer1 = findViewById(R.id.timer1);
+            timerTextViewPlayer2 = findViewById(R.id.timer2);
+            timerPlayer1 = new ChessTimer(time * 60 * 1000, addTime);
+            timerPlayer2 = new ChessTimer(time * 60 * 1000, addTime);
+            updateCountDownText(timerTextViewPlayer1, time * 60 * 1000);
+            updateCountDownText(timerTextViewPlayer2, time * 60 * 1000);
+
+            timerPlayer1.start(timerTextViewPlayer1);
+        }
+
+
     }
 
     private void mapTilesToButtons() {
@@ -96,13 +101,15 @@ public class TimerGame extends AppCompatActivity {
 
             }
         else if (isFirstClick == false ){
-            if (swapPiece.canMove(board,swapTile, tile)){
+            if (swapPiece.canMove(board,swapTile, tile) && currentTurn.isWhiteSide() == swapPiece.isWhite()){
                 tile.setPiece(swapPiece);
                 swapTile.setPiece(null);
                 update_board();
+                switchTurn(time);
             }
             isFirstClick = true;
             }
+
         }
 
         private void update_board(){
@@ -129,6 +136,36 @@ public class TimerGame extends AppCompatActivity {
         ImageButton button = findViewById(resID);
         if (button != null) {
             button.setImageResource(0); // Removes the image
+        }
+    }
+
+    private void updateCountDownText(TextView textView, long timeInMillis) {
+        int minutes = (int) (timeInMillis / 1000) / 60;
+        int seconds = (int) (timeInMillis / 1000) % 60;
+        String timeFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
+        textView.setText(timeFormatted);
+    }
+
+    private void switchTurn(int time) {
+        if (currentTurn == players[0]) {
+            currentTurn = players[1];
+            if (time != -1) {
+                timerPlayer1.pause();
+                if (timerPlayer1.addT) {
+                    timerPlayer1.addTime(extraTime);
+                }
+                timerPlayer2.start(timerTextViewPlayer2);
+            }
+        }
+        else {
+            currentTurn = players[0];
+            if (time != -1) {
+                timerPlayer2.pause();
+                if (timerPlayer2.addT) {
+                    timerPlayer2.addTime(extraTime);
+                }
+                timerPlayer1.start(timerTextViewPlayer1);
+            }
         }
     }
 }
