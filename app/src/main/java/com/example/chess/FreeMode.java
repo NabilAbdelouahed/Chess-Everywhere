@@ -59,4 +59,12 @@ public class FreeMode extends AppCompatActivity {
         }
     }
 
+    public void clear_board(View view){
+        for (int x = 0; x < 8; x++) {
+            for (int y = 0; y < 8; y++) {
+                String buttonID = "button" + x + y;
+                removeButtonImage(buttonID);
+            }
+        }
+    }
 }

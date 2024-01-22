@@ -15,8 +15,10 @@ public class Pawn extends Piece{
 
         // we can't move the piece to a spot that has
         // a piece of the same colour
-        if (end.getPiece().isWhite() == this.isWhite()) {
-            return false;
+        if (end.getPiece() != null) {
+            if (end.getPiece().isWhite() == this.isWhite()) {
+                return false;
+            }
         }
         if (y == 0 && x == direction && end.getPiece() == null ) {
             return true;
