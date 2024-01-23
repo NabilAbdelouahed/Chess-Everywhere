@@ -1,5 +1,6 @@
 package com.example.chess;
 
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -150,20 +151,20 @@ public class TimerGame extends AppCompatActivity {
         if (currentTurn == players[0]) {
             currentTurn = players[1];
             if (time != -1) {
-                timerPlayer1.pause();
                 if (timerPlayer1.addT) {
-                    timerPlayer1.addTime(extraTime);
+                    timerPlayer1.addTime(extraTime, timerTextViewPlayer1);
                 }
+                timerPlayer1.pause();
                 timerPlayer2.start(timerTextViewPlayer2);
             }
         }
         else {
             currentTurn = players[0];
             if (time != -1) {
-                timerPlayer2.pause();
                 if (timerPlayer2.addT) {
-                    timerPlayer2.addTime(extraTime);
+                    timerPlayer2.addTime(extraTime, timerTextViewPlayer2);
                 }
+                timerPlayer2.pause();
                 timerPlayer1.start(timerTextViewPlayer1);
             }
         }

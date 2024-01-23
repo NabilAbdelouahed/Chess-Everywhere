@@ -16,12 +16,13 @@ public class ChessTimer {
         this.addT = addT;
     }
 
-    public void addTime(long extraTimeInMillis) {
+    public void addTime(long extraTimeInMillis, TextView textView) {
         if (isRunning) {
             // Cancel the current timer and add extra time
             countDownTimer.cancel();
             timeLeftInMillis += extraTimeInMillis;
-
+            start(textView);
+            updateCountDownText(textView);
         } else {
             // If the timer is not running, just add the time
             timeLeftInMillis += extraTimeInMillis;
