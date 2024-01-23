@@ -26,6 +26,7 @@ public class ChessTimer {
         } else {
             // If the timer is not running, just add the time
             timeLeftInMillis += extraTimeInMillis;
+            updateCountDownText(textView);
         }
     }
 
