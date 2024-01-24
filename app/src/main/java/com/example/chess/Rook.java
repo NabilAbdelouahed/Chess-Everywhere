@@ -1,9 +1,18 @@
 package com.example.chess;
 
 public class Rook extends Piece{
+    public boolean rookMoved = false;
     public Rook(Boolean white)
     {
         super(white);
+    }
+
+    public boolean rookMoved() {
+        return this.rookMoved;
+    }
+
+    public void setRookMoved() {
+        this.rookMoved = true;
     }
     @Override
     public boolean canMove(Board board, Tile start,
