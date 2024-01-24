@@ -2,9 +2,9 @@ package com.example.chess;
 
 public enum GameStatus {
     ACTIVE,
-    BLACK_WIN,
-    WHITE_WIN,
-    FORFEIT,
+    CHECKMATE_BLACK_WIN,
+    CHECKMATE_WHITE_WIN,
+    DRAW,
     STALEMATE,
     RESIGNATION,
     TIMEOUT

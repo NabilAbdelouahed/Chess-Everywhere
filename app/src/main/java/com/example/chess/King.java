@@ -2,8 +2,11 @@ package com.example.chess;
 
 import android.util.Log;
 
+import java.util.Optional;
+
 public class King extends Piece {
     private Boolean kingMoved = false;
+    public boolean checkmate = false;
 
     public King(boolean white) {
         super(white);
@@ -16,10 +19,16 @@ public class King extends Piece {
     public void setKingMoved() {
         this.kingMoved = true;
     }
+    public boolean kingMated() {
+        return this.checkmate;
+    }
+
+    public void setKingMated() {
+        this.checkmate = true;
+    }
 
     @Override
-    public boolean canMove(Board board, Tile start, Tile end)
-    {
+    public boolean canMove(Board board, Tile start, Tile end) {
         if (end.getPiece() != null) {
             if (end.getPiece().isWhite() == this.isWhite()) {
                 return false;
@@ -27,55 +36,79 @@ public class King extends Piece {
         }
         int x = Math.abs(start.getX() - end.getX());
         int y = Math.abs(start.getY() - end.getY());
-        if ((x<=1)&&(y<=1)) {
-            return (!(isKingChecked(board,end,(King)start.getPiece())));
+        if ((x <= 1) && (y <= 1)) {
+            return (!(isKingChecked(board, end, (King) start.getPiece())));
+        } else {
+            return isCastlingMove(board, start, end);
         }
-        else {return isCastlingMove(board,start,end);}
 
     }
 
-    public boolean isCastlingMove(Board board, Tile start, Tile end)
-    {
-        if (isKingChecked(board, start, (King)start.getPiece()) == false) {
+    public boolean isCastlingMove(Board board, Tile start, Tile end) {
+        if (isKingChecked(board, start, (King) start.getPiece()) == false) {
             if (this.kingMoved == false) {
                 if (this.isWhite() && end.getX() == 0 && end.getY() == 2 && board.getBox(0, 0).getPiece() instanceof Rook) {
                     if (((Rook) board.getBox(0, 0).getPiece()).rookMoved() == false) {
                         for (int i = 1; i < 4; i++) {
-                            if (board.getBox(0, i).getPiece() != null) {return false;}
-                            if (isKingChecked(board,board.getBox(0, i),(King)start.getPiece() )){return false;}
+                            if (board.getBox(0, i).getPiece() != null) {
+                                return false;
+                            }
+                            if (isKingChecked(board, board.getBox(0, i), (King) start.getPiece())) {
+                                return false;
+                            }
                         }
                         ((Rook) board.getBox(0, 0).getPiece()).setRookMoved();
                         ((King) start.getPiece()).setKingMoved();
+                        board.getBox(0, 3).setPiece(board.getBox(0, 0).getPiece());
+                        board.getBox(0, 0).setPiece(null);
                         return true;
                     }
                 } else if (this.isWhite() && end.getX() == 0 && end.getY() == 6 && board.getBox(0, 7).getPiece() instanceof Rook) {
                     if (((Rook) board.getBox(0, 7).getPiece()).rookMoved() == false) {
                         for (int i = 5; i < 7; i++) {
-                            if (board.getBox(0, i).getPiece() != null) {return false;}
-                            if (isKingChecked(board,board.getBox(0, i),(King)start.getPiece() )){return false;}
+                            if (board.getBox(0, i).getPiece() != null) {
+                                return false;
+                            }
+                            if (isKingChecked(board, board.getBox(0, i), (King) start.getPiece())) {
+                                return false;
+                            }
                         }
                         ((Rook) board.getBox(0, 7).getPiece()).setRookMoved();
                         ((King) start.getPiece()).setKingMoved();
+                        board.getBox(0, 5).setPiece(board.getBox(0, 7).getPiece());
+                        board.getBox(0, 7).setPiece(null);
                         return true;
                     }
                 } else if (this.isWhite() == false && end.getX() == 7 && end.getY() == 2 && board.getBox(7, 0).getPiece() instanceof Rook) {
                     if (((Rook) board.getBox(7, 0).getPiece()).rookMoved() == false) {
                         for (int i = 1; i < 4; i++) {
-                            if (board.getBox(7, i).getPiece() != null) {return false;}
-                            if (isKingChecked(board,board.getBox(7, i),(King)start.getPiece() )){return false;}
+                            if (board.getBox(7, i).getPiece() != null) {
+                                return false;
+                            }
+                            if (isKingChecked(board, board.getBox(7, i), (King) start.getPiece())) {
+                                return false;
+                            }
                         }
                         ((Rook) board.getBox(7, 0).getPiece()).setRookMoved();
                         ((King) start.getPiece()).setKingMoved();
+                        board.getBox(7, 3).setPiece(board.getBox(7, 0).getPiece());
+                        board.getBox(7, 0).setPiece(null);
                         return true;
                     }
-                } else if (this.isWhite() == false  && end.getX() == 7 && end.getY() == 6 && board.getBox(7, 7).getPiece() instanceof Rook) {
+                } else if (this.isWhite() == false && end.getX() == 7 && end.getY() == 6 && board.getBox(7, 7).getPiece() instanceof Rook) {
                     if (((Rook) board.getBox(7, 7).getPiece()).rookMoved() == false) {
                         for (int i = 5; i < 7; i++) {
-                            if (board.getBox(7, i).getPiece() != null) {return false;}
-                            if (isKingChecked(board,board.getBox(7, i),(King)start.getPiece() )){return false;}
+                            if (board.getBox(7, i).getPiece() != null) {
+                                return false;
+                            }
+                            if (isKingChecked(board, board.getBox(7, i), (King) start.getPiece())) {
+                                return false;
+                            }
                         }
                         ((Rook) board.getBox(7, 7).getPiece()).setRookMoved();
                         ((King) start.getPiece()).setKingMoved();
+                        board.getBox(7, 5).setPiece(board.getBox(7, 7).getPiece());
+                        board.getBox(7, 7).setPiece(null);
                         return true;
                     }
                 }
@@ -83,19 +116,38 @@ public class King extends Piece {
         }
         return false;
     }
+
     @Override
-    public String getDrawable(boolean white){
-        if (white==false){return ("black_king_rotated");}
+    public String getDrawable(boolean white) {
+        if (white == false) {
+            return ("black_king_rotated");
+        }
         return ("white_king");
     }
 
-    public boolean isKingChecked(Board board, Tile kingTile, King king){
-        for (int row = 0; row<8; row++){
-            for(int column = 0; column<8;column++){
-                if (board.getBox(row,column).getPiece() != null) {
-                    if (!(board.getBox(row,column).getPiece() instanceof King)) {
+    public boolean isKingChecked(Board board, Tile kingTile, King king) {
+        for (int row = 0; row < 8; row++) {
+            for (int column = 0; column < 8; column++) {
+                if (board.getBox(row, column).getPiece() != null) {
+                    if (!(board.getBox(row, column).getPiece() instanceof King || board.getBox(row, column).getPiece() instanceof Pawn)) {
                         if (board.getBox(row, column).getPiece().isWhite() != king.isWhite() && board.getBox(row, column).getPiece().canMove(board, board.getBox(row, column), kingTile)) {
                             return true;
+                        }
+                    } else if (board.getBox(row, column).getPiece() instanceof King) {
+                        if (board.getBox(row, column).getPiece().isWhite() != king.isWhite() && kingsFaceOffMove(board, kingTile, king, Optional.of(board.getBox(row, column)))) {
+                            return true;
+                        }
+                    } else if (board.getBox(row, column).getPiece() instanceof Pawn) {
+                        if (board.getBox(row, column).getPiece().isWhite() != king.isWhite()) {
+                            if (board.getBox(row, column).getPiece().isWhite()) {
+                                if (kingTile.getX() == board.getBox(row, column).getX() + 1 && (kingTile.getY() == board.getBox(row, column).getY() + 1 || kingTile.getY() == board.getBox(row, column).getY() - 1)) {
+                                    return true;
+                                } else {
+                                    if (kingTile.getX() == board.getBox(row, column).getX() - 1 && (kingTile.getY() == board.getBox(row, column).getY() + 1 || kingTile.getY() == board.getBox(row, column).getY() - 1)) {
+                                        return true;
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -103,8 +155,54 @@ public class King extends Piece {
         }
         return false;
     }
-    public boolean kingsFaceOffMove(Board board,Tile start, Tile end){
-        return(true);
+
+    public boolean kingsFaceOffMove(Board board, Tile end, King firstKing, Optional<Tile> secondKingTile) {
+        if (secondKingTile.isPresent()) {
+            // Get the position of the second king
+            Tile secondKingPosition = secondKingTile.get();
+
+            // Check if the kings are next to each other
+            int x = Math.abs(end.getX() - secondKingPosition.getX());
+            int y = Math.abs(end.getY() - secondKingPosition.getY());
+
+            // If the absolute difference between the x and y coordinates of the two kings is 1 or less, they are next to each other
+            return x <= 1 && y <= 1;
+        }
+        else {
+            for (int row = 0; row < 8; row++) {
+                for (int column = 0; column < 8; column++) {
+                    if (board.getBox(row, column).getPiece() instanceof King && board.getBox(row, column).getPiece().isWhite() != firstKing.isWhite()) {
+                        // Get the position of the second king
+                        Tile secondKingPosition = board.getBox(row, column);
+
+                        // Check if the kings are next to each other
+                        int x = Math.abs(end.getX() - secondKingPosition.getX());
+                        int y = Math.abs(end.getY() - secondKingPosition.getY());
+
+                        // If the absolute difference between the x and y coordinates of the two kings is 1 or less, they are next to each other
+                        return x <= 1 && y <= 1;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean isKingMated(Board board, Tile kingTile, King king) {
+        if (isKingChecked(board, kingTile, king)) {
+            for (int row = kingTile.getX() - 1; row <= kingTile.getX() + 1; row++) {
+                for (int column = kingTile.getY() - 1; column <= kingTile.getY() + 1; column++) {
+                    if (row >= 0 && row < 8 && column >= 0 && column < 8) {
+                        if (board.getBox(row, column).getPiece() == null || board.getBox(row, column).getPiece().isWhite() != king.isWhite()) {
+                            if (board.getBox(row, column).getPiece() == null || board.getBox(row, column).getPiece().canMove(board, board.getBox(row, column), kingTile)) {
+                                return false;
+                            }
+                        }
+                    }
+                }
+            }
+            return true;
+        }
+        return false;
     }
 }
-
