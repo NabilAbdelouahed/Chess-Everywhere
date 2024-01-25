@@ -37,6 +37,9 @@ public class King extends Piece {
         int x = Math.abs(start.getX() - end.getX());
         int y = Math.abs(start.getY() - end.getY());
         if ((x <= 1) && (y <= 1)) {
+            if (end.getPiece() != null) {
+                return(!(isKingCheckedCaptureMove(board, start, end, (King) start.getPiece())));
+            }
             return (!(isKingChecked(board, end, (King) start.getPiece())));
         } else {
             return isCastlingMove(board, start, end);
@@ -126,35 +129,38 @@ public class King extends Piece {
     }
 
     public boolean isKingChecked(Board board, Tile kingTile, King king) {
-        for (int row = 0; row < 8; row++) {
-            for (int column = 0; column < 8; column++) {
-                if (board.getBox(row, column).getPiece() != null) {
-                    if (!(board.getBox(row, column).getPiece() instanceof King || board.getBox(row, column).getPiece() instanceof Pawn)) {
-                        if (board.getBox(row, column).getPiece().isWhite() != king.isWhite() && board.getBox(row, column).getPiece().canMove(board, board.getBox(row, column), kingTile)) {
-                            return true;
-                        }
-                    } else if (board.getBox(row, column).getPiece() instanceof King) {
-                        if (board.getBox(row, column).getPiece().isWhite() != king.isWhite() && kingsFaceOffMove(board, kingTile, king, Optional.of(board.getBox(row, column)))) {
-                            return true;
-                        }
-                    } else if (board.getBox(row, column).getPiece() instanceof Pawn) {
-                        if (board.getBox(row, column).getPiece().isWhite() != king.isWhite()) {
-                            if (board.getBox(row, column).getPiece().isWhite()) {
-                                if (kingTile.getX() == board.getBox(row, column).getX() + 1 && (kingTile.getY() == board.getBox(row, column).getY() + 1 || kingTile.getY() == board.getBox(row, column).getY() - 1)) {
-                                    return true;
-                                } else {
-                                    if (kingTile.getX() == board.getBox(row, column).getX() - 1 && (kingTile.getY() == board.getBox(row, column).getY() + 1 || kingTile.getY() == board.getBox(row, column).getY() - 1)) {
+            for (int row = 0; row < 8; row++) {
+                for (int column = 0; column < 8; column++) {
+                    if (board.getBox(row, column).getPiece() != null) {
+                        if (!(board.getBox(row, column).getPiece() instanceof King || board.getBox(row, column).getPiece() instanceof Pawn)) {
+                            if (board.getBox(row, column).getPiece().isWhite() != king.isWhite() && board.getBox(row, column).getPiece().canMove(board, board.getBox(row, column), kingTile)) {
+                                return true;
+                            }
+                        } else if (board.getBox(row, column).getPiece() instanceof King) {
+                            if (board.getBox(row, column).getPiece().isWhite() != king.isWhite() && kingsFaceOffMove(board, kingTile, king, Optional.of(board.getBox(row, column)))) {
+                                return true;
+                            }
+                        } else if (board.getBox(row, column).getPiece() instanceof Pawn) {
+                            if (board.getBox(row, column).getPiece().isWhite() != king.isWhite()) {
+                                if (board.getBox(row, column).getPiece().isWhite()) {
+                                    if (kingTile.getX() == row + 1 && (kingTile.getY() == column + 1 || kingTile.getY() == column - 1)) {
                                         return true;
+                                    }
+                                }
+                                else {
+                                    if (kingTile.getX() == row - 1 && (kingTile.getY() == column + 1 || kingTile.getY() == column - 1)) {
+                                        return true;
+                                        }
                                     }
                                 }
                             }
                         }
                     }
                 }
-            }
-        }
         return false;
     }
+
+
 
     public boolean kingsFaceOffMove(Board board, Tile end, King firstKing, Optional<Tile> secondKingTile) {
         if (secondKingTile.isPresent()) {
@@ -193,9 +199,30 @@ public class King extends Piece {
             for (int row = kingTile.getX() - 1; row <= kingTile.getX() + 1; row++) {
                 for (int column = kingTile.getY() - 1; column <= kingTile.getY() + 1; column++) {
                     if (row >= 0 && row < 8 && column >= 0 && column < 8) {
-                        if (board.getBox(row, column).getPiece() == null || board.getBox(row, column).getPiece().isWhite() != king.isWhite()) {
-                            if (board.getBox(row, column).getPiece() == null || board.getBox(row, column).getPiece().canMove(board, board.getBox(row, column), kingTile)) {
-                                return false;
+                        if (king.canMove(board, kingTile, board.getBox(row, column)) ) {
+                            return false;
+                        }
+                    }
+                }
+            }
+            Piece protectingPiece;
+            for(int row = 0; row < 8; row++){
+                for(int column = 0; column < 8; column++){
+                    if(board.getBox(row, column).getPiece() != null){
+                        if(board.getBox(row, column).getPiece().isWhite() == king.isWhite()){
+                            for(int row2 = 0; row2 < 8; row2++){
+                                for(int column2 = 0; column2 < 8; column2++){
+                                    if (board.getBox(row, column).getPiece().canMove(board, board.getBox(row, column), board.getBox(row2, column2)) && !(board.getBox(row2, column2).getPiece() instanceof King)) {
+                                        protectingPiece = board.getBox(row, column).getPiece();
+                                        board.getBox(row2, column2).setPiece(protectingPiece);
+                                        board.getBox(row, column).setPiece(null);
+                                        if (!isKingChecked(board, kingTile, king)) {
+                                            board.getBox(row, column).setPiece(protectingPiece);
+                                            board.getBox(row2, column2).setPiece(null);
+                                            return false;
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
@@ -203,6 +230,49 @@ public class King extends Piece {
             }
             return true;
         }
+        return false;
+    }
+    public boolean isKingCheckedCaptureMove(Board board, Tile start, Tile end, King king) {
+        Piece capturedPiece = end.getPiece();
+        end.setPiece(king);
+        start.setPiece(null);
+        for (int row = 0; row < 8; row++) {
+            for (int column = 0; column < 8; column++) {
+                if (board.getBox(row, column).getPiece() != null) {
+                    if (!(board.getBox(row, column).getPiece() instanceof King || board.getBox(row, column).getPiece() instanceof Pawn)) {
+                        if (board.getBox(row, column).getPiece().isWhite() != king.isWhite() && board.getBox(row, column).getPiece().canMove(board, board.getBox(row, column), end)) {
+                            start.setPiece(king);
+                            end.setPiece(capturedPiece);
+                            return true;
+                        }
+                    } else if (board.getBox(row, column).getPiece() instanceof King) {
+                        if (board.getBox(row, column).getPiece().isWhite() != king.isWhite() && kingsFaceOffMove(board, end, king, Optional.of(board.getBox(row, column)))) {
+                            start.setPiece(king);
+                            end.setPiece(capturedPiece);
+                            return true;
+                        }
+                    } else if (board.getBox(row, column).getPiece() instanceof Pawn) {
+                        if (board.getBox(row, column).getPiece().isWhite() != king.isWhite()) {
+                            if (board.getBox(row, column).getPiece().isWhite()) {
+                                if (end.getX() == row + 1 && (end.getY() == column + 1 || end.getY() == column - 1)) {
+                                    start.setPiece(king);
+                                    end.setPiece(capturedPiece);
+                                    return true;
+                                } else {
+                                    if (end.getX() == row - 1 && (end.getY() == column + 1 || end.getY() == column - 1)) {
+                                        start.setPiece(king);
+                                        end.setPiece(capturedPiece);
+                                        return true;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        start.setPiece(king);
+        end.setPiece(capturedPiece);
         return false;
     }
 }
