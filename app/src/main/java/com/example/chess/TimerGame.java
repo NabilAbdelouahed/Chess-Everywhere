@@ -26,9 +26,13 @@ public class TimerGame extends AppCompatActivity {
     private ChessTimer timerPlayer1;
     private ChessTimer timerPlayer2;
     private long extraTime = 1000;
+    private int[] whiteKingPosition = new int[2];
+    private int[] blackKingPosition = new int[2];
     public int time = -1;
     private TextView timerTextViewPlayer1;
     private TextView timerTextViewPlayer2;
+    private boolean isWhiteChecked = false;
+    private boolean isBlackChecked = false;
 
 
 
@@ -36,6 +40,11 @@ public class TimerGame extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timer_game);
+        status = GameStatus.ACTIVE;
+        whiteKingPosition[0] = 0;
+        whiteKingPosition[1] = 4;
+        blackKingPosition[0] = 7;
+        blackKingPosition[1] = 4;
         Intent intent = getIntent();
         time = intent.getIntExtra("time",-1);
         boolean addTime = intent.getBooleanExtra("addTime",false);
@@ -61,7 +70,6 @@ public class TimerGame extends AppCompatActivity {
             timerPlayer1.start(timerTextViewPlayer1);
         }
 
-
     }
 
     private void mapTilesToButtons() {
@@ -86,32 +94,149 @@ public class TimerGame extends AppCompatActivity {
                     public void onClick(View v) {
                         Tile tile = (Tile) v.getTag(); // Retrieve the associated tile
                         // Handle the tile click action here
-                        onTileClicked(tile);
+                        onTileClicked(tile, board);
                     }
                 });
             }
         }
     }
 
-    private void onTileClicked(Tile tile) {
+    private void onTileClicked(Tile tile, Board board) {
 
         if (isFirstClick && tile.getPiece() != null) {
             swapTile = tile;
             swapPiece = tile.getPiece();
             isFirstClick = false;
+        }
 
-            }
         else if (isFirstClick == false ){
             if (swapPiece.canMove(board,swapTile, tile) && currentTurn.isWhiteSide() == swapPiece.isWhite()){
-                tile.setPiece(swapPiece);
-                swapTile.setPiece(null);
-                update_board();
-                switchTurn(time);
+                if (isWhiteChecked && currentTurn.isWhiteSide()){
+                    if (swapPiece instanceof King) {
+                        Piece tempPiece = tile.getPiece();
+                        tile.setPiece(swapPiece);
+                        swapTile.setPiece(null);
+                        if (!(((King) tile.getPiece()).isKingChecked(board, tile, (King) tile.getPiece()))) {
+                            isWhiteChecked = false;
+                            if (swapPiece.isWhite()){
+                                whiteKingPosition[0] = tile.getX();
+                                whiteKingPosition[1] = tile.getY();
+                            }
+                            else{
+                                blackKingPosition[0] = tile.getX();
+                                blackKingPosition[1] = tile.getY();
+                            }
+                            tile.setPiece(swapPiece);
+                            swapTile.setPiece(null);
+                            update_board();
+                            switchTurn(time);
+                            if (((King) board.getBox(blackKingPosition[0], blackKingPosition[1]).getPiece()).isKingChecked(board, board.getBox(blackKingPosition[0], blackKingPosition[1]), (King) board.getBox(blackKingPosition[0], blackKingPosition[1]).getPiece())){
+                                isBlackChecked = true;
+                            }
+                        }
+                        else{
+                            tile.setPiece(tempPiece);
+                            swapTile.setPiece(swapPiece);
+                        }
+                    }
+                    else{
+                        Piece tempPiece = tile.getPiece();
+                        tile.setPiece(swapPiece);
+                        swapTile.setPiece(null);
+                        if (!(((King) board.getBox(whiteKingPosition[0], whiteKingPosition[1]).getPiece()).isKingChecked(board, board.getBox(whiteKingPosition[0], whiteKingPosition[1]), (King) board.getBox(whiteKingPosition[0], whiteKingPosition[1]).getPiece()))) {
+                            isWhiteChecked = false;
+                            tile.setPiece(swapPiece);
+                            swapTile.setPiece(null);
+                            update_board();
+                            switchTurn(time);
+                            if (((King) board.getBox(blackKingPosition[0], blackKingPosition[1]).getPiece()).isKingChecked(board, board.getBox(blackKingPosition[0], blackKingPosition[1]), (King) board.getBox(blackKingPosition[0], blackKingPosition[1]).getPiece())){
+                                isBlackChecked = true;
+                            }
+                        }
+                        else{
+                            tile.setPiece(tempPiece);
+                            swapTile.setPiece(swapPiece);
+                        }
+                    }
+                }
+                else if (isBlackChecked && !currentTurn.isWhiteSide()){
+                    if (swapPiece instanceof King) {
+                        Piece tempPiece = tile.getPiece();
+                        tile.setPiece(swapPiece);
+                        swapTile.setPiece(null);
+                        if (!(((King) tile.getPiece()).isKingChecked(board, tile, (King) tile.getPiece()))) {
+                            isWhiteChecked = false;
+                            if (swapPiece.isWhite()){
+                                whiteKingPosition[0] = tile.getX();
+                                whiteKingPosition[1] = tile.getY();
+                            }
+                            else{
+                                blackKingPosition[0] = tile.getX();
+                                blackKingPosition[1] = tile.getY();
+                            }
+                            tile.setPiece(swapPiece);
+                            swapTile.setPiece(null);
+                            update_board();
+                            switchTurn(time);
+                            if (((King) board.getBox(whiteKingPosition[0], whiteKingPosition[1]).getPiece()).isKingChecked(board, board.getBox(whiteKingPosition[0], whiteKingPosition[1]), (King) board.getBox(whiteKingPosition[0], whiteKingPosition[1]).getPiece())){
+                                isWhiteChecked = true;
+                            }
+                        }
+                        else{
+                            tile.setPiece(tempPiece);
+                            swapTile.setPiece(swapPiece);
+                        }
+                    }
+                    else{
+                        Piece tempPiece = tile.getPiece();
+                        tile.setPiece(swapPiece);
+                        swapTile.setPiece(null);
+                        if (!(((King) board.getBox(blackKingPosition[0], blackKingPosition[1]).getPiece()).isKingChecked(board, board.getBox(blackKingPosition[0], blackKingPosition[1]), (King) board.getBox(blackKingPosition[0], blackKingPosition[1]).getPiece()))) {
+                            isWhiteChecked = false;
+                            tile.setPiece(swapPiece);
+                            swapTile.setPiece(null);
+                            update_board();
+                            switchTurn(time);
+                            if (((King) board.getBox(whiteKingPosition[0], whiteKingPosition[1]).getPiece()).isKingChecked(board, board.getBox(whiteKingPosition[0], whiteKingPosition[1]), (King) board.getBox(whiteKingPosition[0], whiteKingPosition[1]).getPiece())){
+                                isWhiteChecked = true;
+                            }
+                        }
+                        else{
+                            tile.setPiece(tempPiece);
+                            swapTile.setPiece(swapPiece);
+                        }
+                    }
+                }
+                else{
+                    if (swapPiece.isWhite() && swapPiece instanceof King){
+                        whiteKingPosition[0] = tile.getX();
+                        whiteKingPosition[1] = tile.getY();
+                    }
+                    else if (!swapPiece.isWhite() && swapPiece instanceof King){
+                        blackKingPosition[0] = tile.getX();
+                        blackKingPosition[1] = tile.getY();
+                    }
+                    tile.setPiece(swapPiece);
+                    swapTile.setPiece(null);
+                    update_board();
+                    switchTurn(time);
+                    if(currentTurn.isWhiteSide()){
+                        if (((King) board.getBox(whiteKingPosition[0], whiteKingPosition[1]).getPiece()).isKingChecked(board, board.getBox(whiteKingPosition[0], whiteKingPosition[1]), (King) board.getBox(whiteKingPosition[0], whiteKingPosition[1]).getPiece())){
+                            isWhiteChecked = true;
+                        }
+                    }
+                    else{
+                        if (((King) board.getBox(blackKingPosition[0], blackKingPosition[1]).getPiece()).isKingChecked(board, board.getBox(blackKingPosition[0], blackKingPosition[1]), (King) board.getBox(blackKingPosition[0], blackKingPosition[1]).getPiece())){
+                            isBlackChecked = true;
+                        }
+                    }
+                }
             }
             isFirstClick = true;
-            }
-
         }
+    }
+
+
 
         private void update_board(){
             for (int x = 0; x < 8; x++) {
@@ -169,6 +294,17 @@ public class TimerGame extends AppCompatActivity {
             }
         }
     }
+    private void resign(View view){
+        int resID = view.getId();
+        String buttonID = getResources().getResourceEntryName(resID);
+        if (buttonID.equals("resignBlack")){
+            status = GameStatus.RESIGNATION_WHITE_WIN;
+        }
+        else{
+            status = GameStatus.RESIGNATION_BLACK_WIN;
+        }
+    }
+
 }
 
 

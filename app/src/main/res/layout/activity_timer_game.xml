@@ -8,6 +8,20 @@
     android:padding="16dp">
 
 
+    <Button
+        android:id="@+id/resignBlack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:rotation="180"
+        android:text="Resign"
+        android:onClick="resign" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <TextView
         android:id="@+id/timer2"
         android:layout_width="wrap_content"
@@ -493,5 +507,19 @@
     android:text=""
     android:textSize="18sp" android:textColor="@color/white"
     android:layout_gravity="center" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:id="@+id/resignWhite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:rotation="180"
+        android:text="Resign"
+        android:onClick="resign" />
 
 </LinearLayout>
