@@ -146,6 +146,9 @@ public class TimerGame extends AppCompatActivity {
                             isWhiteChecked = false;
                             tile.setPiece(swapPiece);
                             swapTile.setPiece(null);
+                            if (swapPiece instanceof Pawn && tile.getX()==7){
+                                showPawnPromotionDialog(board,swapTile,tile,swapPiece.isWhite());
+                            }
                             update_board();
                             switchTurn(time);
                             if (((King) board.getBox(blackKingPosition[0], blackKingPosition[1]).getPiece()).isKingChecked(board, board.getBox(blackKingPosition[0], blackKingPosition[1]), (King) board.getBox(blackKingPosition[0], blackKingPosition[1]).getPiece())){
@@ -188,6 +191,9 @@ public class TimerGame extends AppCompatActivity {
                             isBlackChecked = false;
                             tile.setPiece(swapPiece);
                             swapTile.setPiece(null);
+                            if (swapPiece instanceof Pawn && tile.getX()==0){
+                                showPawnPromotionDialog(board,swapTile,tile,swapPiece.isWhite());
+                            }
                             update_board();
                             switchTurn(time);
                             if (((King) board.getBox(whiteKingPosition[0], whiteKingPosition[1]).getPiece()).isKingChecked(board, board.getBox(whiteKingPosition[0], whiteKingPosition[1]), (King) board.getBox(whiteKingPosition[0], whiteKingPosition[1]).getPiece())){
@@ -201,18 +207,42 @@ public class TimerGame extends AppCompatActivity {
                     }
                 }
                 else{
-                    if (swapPiece.isWhite() && swapPiece instanceof King){
-                        whiteKingPosition[0] = tile.getX();
-                        whiteKingPosition[1] = tile.getY();
-                    }
-                    else if (!swapPiece.isWhite() && swapPiece instanceof King){
-                        blackKingPosition[0] = tile.getX();
-                        blackKingPosition[1] = tile.getY();
-                    }
+                    Piece tempPiece = tile.getPiece();
                     tile.setPiece(swapPiece);
                     swapTile.setPiece(null);
-                    update_board();
-                    switchTurn(time);
+                    if (currentTurn.isWhiteSide() && !((King) board.getBox(whiteKingPosition[0], whiteKingPosition[1]).getPiece()).isKingChecked(board, board.getBox(whiteKingPosition[0], whiteKingPosition[1]), (King) board.getBox(whiteKingPosition[0], whiteKingPosition[1]).getPiece())){
+                        if (swapPiece instanceof King) {
+                            whiteKingPosition[0] = tile.getX();
+                            whiteKingPosition[1] = tile.getY();
+                        }
+                        if (swapPiece instanceof Pawn && tile.getX()==7 && swapPiece.isWhite()){
+                            showPawnPromotionDialog(board,swapTile,tile,swapPiece.isWhite());
+                        }
+                        else if (swapPiece instanceof Pawn && tile.getX()==0 && !swapPiece.isWhite()){
+                            showPawnPromotionDialog(board,swapTile,tile,swapPiece.isWhite());
+                        }
+                        update_board();
+                        switchTurn(time);
+
+                    }
+                    else if (!currentTurn.isWhiteSide() && !((King) board.getBox(blackKingPosition[0], blackKingPosition[1]).getPiece()).isKingChecked(board, board.getBox(blackKingPosition[0], blackKingPosition[1]), (King) board.getBox(blackKingPosition[0], blackKingPosition[1]).getPiece())){
+                        if (swapPiece instanceof King) {
+                            blackKingPosition[0] = tile.getX();
+                            blackKingPosition[1] = tile.getY();
+                        }
+                        if (swapPiece instanceof Pawn && tile.getX()==7 && swapPiece.isWhite()){
+                            showPawnPromotionDialog(board,swapTile,tile,swapPiece.isWhite());
+                        }
+                        else if (swapPiece instanceof Pawn && tile.getX()==0 && !swapPiece.isWhite()){
+                            showPawnPromotionDialog(board,swapTile,tile,swapPiece.isWhite());
+                        }
+                        update_board();
+                        switchTurn(time);
+                    }
+                    else{
+                        tile.setPiece(tempPiece);
+                        swapTile.setPiece(swapPiece);
+                    }
                     if(currentTurn.isWhiteSide()){
                         if (((King) board.getBox(whiteKingPosition[0], whiteKingPosition[1]).getPiece()).isKingChecked(board, board.getBox(whiteKingPosition[0], whiteKingPosition[1]), (King) board.getBox(whiteKingPosition[0], whiteKingPosition[1]).getPiece())){
                             isWhiteChecked = true;
@@ -236,8 +266,6 @@ public class TimerGame extends AppCompatActivity {
             isFirstClick = true;
         }
     }
-
-
 
         private void update_board(){
             for (int x = 0; x < 8; x++) {
@@ -376,6 +404,32 @@ public class TimerGame extends AppCompatActivity {
         });
         builder1.setNegativeButton("No", null);
         AlertDialog dialog = builder1.create();
+        dialog.show();
+    }
+    public void promotePawn(Board board, Tile start, Tile end, Piece piece){
+        end.setPiece(piece);
+        start.setPiece(null);
+        update_board();
+    }
+
+    public void showPawnPromotionDialog(Board board, Tile start, Tile end, Boolean white) {
+        CharSequence[] items = {"Queen", "Rook", "Bishop", "Knight"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Choose piece for promotion");
+        builder.setItems(items, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // 'which' is the index of the selected item
+                switch (which) {
+                    case 0: promotePawn(board,start,end,new Queen(white)); break;
+                    case 1: promotePawn(board,start,end,new Rook(white)); break;
+                    case 2: promotePawn(board,start,end,new Bishop(white)); break;
+                    case 3: promotePawn(board,start,end,new Knight(white)); break;
+                }
+            }
+        });
+
+        AlertDialog dialog = builder.create();
         dialog.show();
     }
 }

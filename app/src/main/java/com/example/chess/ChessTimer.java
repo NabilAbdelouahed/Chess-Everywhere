@@ -18,7 +18,7 @@ public class ChessTimer {
     public boolean addT;
     private CountDownTimer countDownTimer;
     private boolean isRunning;
-    private TimerGame timerGame; // Ajout d'une référence à l'activité TimerGame
+    private TimerGame timerGame;
 
 
     public ChessTimer(long timeInMillis, boolean addT, TimerGame timerGame) {

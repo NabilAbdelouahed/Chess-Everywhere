@@ -1,10 +1,12 @@
 package com.example.chess;
 
+import androidx.appcompat.app.AlertDialog;
+
+import android.content.DialogInterface;
+import android.util.Log;
+
 public class Pawn extends Piece{
-    public Pawn(Boolean white)
-    {
-        super(white);
-    }
+    public Pawn(Boolean white) {super(white);}
     @Override
     public boolean canMove(Board board, Tile start,
                            Tile end) {
@@ -13,8 +15,7 @@ public class Pawn extends Piece{
         // Movement direction depends on the pawn's color
         int direction = start.getPiece().isWhite() ? 1 : -1;
 
-        // we can't move the piece to a spot that has
-        // a piece of the same colour
+
         if (end.getPiece() != null) {
             if (end.getPiece().isWhite() == this.isWhite()) {
                 return false;
