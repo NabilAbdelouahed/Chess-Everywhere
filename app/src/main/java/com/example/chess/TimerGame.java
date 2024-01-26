@@ -26,8 +26,8 @@ public class TimerGame extends AppCompatActivity {
     private Piece swapPiece;
     private Tile swapTile;
     private ImageButton[][] buttons = new ImageButton[8][8];
-    private Player currentTurn;
-    private GameStatus status;
+    public Player currentTurn;
+    public GameStatus status;
     private ChessTimer timerPlayer1;
     private ChessTimer timerPlayer2;
     private long extraTime = 1000;
@@ -67,8 +67,8 @@ public class TimerGame extends AppCompatActivity {
         if (time != -1 ) {
             timerTextViewPlayer1 = findViewById(R.id.timer1);
             timerTextViewPlayer2 = findViewById(R.id.timer2);
-            timerPlayer1 = new ChessTimer(time * 60 * 1000, addTime);
-            timerPlayer2 = new ChessTimer(time * 60 * 1000, addTime);
+            timerPlayer1 = new ChessTimer(time * 60 * 1000, addTime,this);
+            timerPlayer2 = new ChessTimer(time * 60 * 1000, addTime, this);
             updateCountDownText(timerTextViewPlayer1, time * 60 * 1000);
             updateCountDownText(timerTextViewPlayer2, time * 60 * 1000);
 
@@ -310,6 +310,19 @@ public class TimerGame extends AppCompatActivity {
     private void showGameEndDialog(String message) {
         timerPlayer1.pause();
         timerPlayer2.pause();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(message);
+        builder.setPositiveButton("Restart", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                restartActivity();
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+    public void showEndGameDialogTimeUp(String message) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(message);
         builder.setPositiveButton("Restart", new DialogInterface.OnClickListener() {

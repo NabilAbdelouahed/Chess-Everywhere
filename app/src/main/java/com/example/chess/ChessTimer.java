@@ -18,10 +18,13 @@ public class ChessTimer {
     public boolean addT;
     private CountDownTimer countDownTimer;
     private boolean isRunning;
+    private TimerGame timerGame; // Ajout d'une référence à l'activité TimerGame
 
-    public ChessTimer(long timeInMillis, boolean addT) {
+
+    public ChessTimer(long timeInMillis, boolean addT, TimerGame timerGame) {
         this.timeLeftInMillis = timeInMillis;
         this.addT = addT;
+        this.timerGame = timerGame;
     }
 
     public void addTime(long extraTimeInMillis, TextView textView) {
@@ -48,7 +51,14 @@ public class ChessTimer {
             public void onFinish() {
                 isRunning = false;
                 timerTextView.setText("Time's up!");
-
+                if (timerGame.currentTurn.isWhiteSide()){
+                    timerGame.status = GameStatus.TIMEOUT_BLACK_WIN;
+                    timerGame.showEndGameDialogTimeUp("Black wins by time");
+                }
+                else{
+                    timerGame.status = GameStatus.TIMEOUT_WHITE_WIN;
+                    timerGame.showEndGameDialogTimeUp("White wins by time");
+                }
             }
         }.start();
 
