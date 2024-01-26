@@ -40,6 +40,7 @@ public class ChessTimer {
             public void onFinish() {
                 isRunning = false;
                 timerTextView.setText("Time's up!");
+
             }
         }.start();
 

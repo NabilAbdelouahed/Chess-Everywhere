@@ -1,8 +1,10 @@
 package com.example.chess;
 
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -223,11 +225,19 @@ public class TimerGame extends AppCompatActivity {
                     if(currentTurn.isWhiteSide()){
                         if (((King) board.getBox(whiteKingPosition[0], whiteKingPosition[1]).getPiece()).isKingChecked(board, board.getBox(whiteKingPosition[0], whiteKingPosition[1]), (King) board.getBox(whiteKingPosition[0], whiteKingPosition[1]).getPiece())){
                             isWhiteChecked = true;
+                            if (((King) board.getBox(whiteKingPosition[0], whiteKingPosition[1]).getPiece()).isKingMated(board, board.getBox(whiteKingPosition[0], whiteKingPosition[1]), (King) board.getBox(whiteKingPosition[0], whiteKingPosition[1]).getPiece())){
+                                status = GameStatus.CHECKMATE_BLACK_WIN;
+                                showGameEndDialog("Black wins by checkmate");
+                            }
                         }
                     }
                     else{
                         if (((King) board.getBox(blackKingPosition[0], blackKingPosition[1]).getPiece()).isKingChecked(board, board.getBox(blackKingPosition[0], blackKingPosition[1]), (King) board.getBox(blackKingPosition[0], blackKingPosition[1]).getPiece())){
                             isBlackChecked = true;
+                            if (((King) board.getBox(blackKingPosition[0], blackKingPosition[1]).getPiece()).isKingMated(board, board.getBox(blackKingPosition[0], blackKingPosition[1]), (King) board.getBox(blackKingPosition[0], blackKingPosition[1]).getPiece())){
+                                status = GameStatus.CHECKMATE_WHITE_WIN;
+                                showGameEndDialog("White wins by checkmate");
+                            }
                         }
                     }
                 }
@@ -294,17 +304,76 @@ public class TimerGame extends AppCompatActivity {
             }
         }
     }
-    private void resign(View view){
+    public void resign(View view){
         int resID = view.getId();
         String buttonID = getResources().getResourceEntryName(resID);
         if (buttonID.equals("resignBlack")){
             status = GameStatus.RESIGNATION_WHITE_WIN;
+            showGameEndDialogResign("White wins by resignation");
         }
         else{
             status = GameStatus.RESIGNATION_BLACK_WIN;
+            showGameEndDialogResign("Black wins by resignation");
         }
     }
+    private void showGameEndDialog(String message) {
+        timerPlayer1.pause();
+        timerPlayer2.pause();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(message);
+        builder.setPositiveButton("Restart", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                restartActivity();
+            }
+        });
 
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    private void restartActivity() {
+        Intent intent = getIntent();
+        finish();
+        startActivity(intent);
+    }
+    public void restartGame(View view){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Do you want to restart the game?");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                restartActivity();
+            }
+        });
+        builder.setNegativeButton("No", null);
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+    private void showGameEndDialogResign(String message) {
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+        builder1.setMessage("Do you want to resign?");
+        builder1.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                timerPlayer1.pause();
+                timerPlayer2.pause();
+                AlertDialog.Builder builder2 = new AlertDialog.Builder(TimerGame.this);
+                builder2.setMessage(message);
+                builder2.setPositiveButton("Restart", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        restartActivity();
+                    }
+                });
+                AlertDialog dialog2 = builder2.create();
+                dialog2.show();
+            }
+        });
+        builder1.setNegativeButton("No", null);
+        AlertDialog dialog = builder1.create();
+        dialog.show();
+    }
 }
 
 

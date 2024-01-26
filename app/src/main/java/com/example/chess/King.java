@@ -212,7 +212,7 @@ public class King extends Piece {
                         if(board.getBox(row, column).getPiece().isWhite() == king.isWhite()){
                             for(int row2 = 0; row2 < 8; row2++){
                                 for(int column2 = 0; column2 < 8; column2++){
-                                    if (board.getBox(row, column).getPiece().canMove(board, board.getBox(row, column), board.getBox(row2, column2)) && !(board.getBox(row2, column2).getPiece() instanceof King)) {
+                                    if (board.getBox(row, column).getPiece().canMove(board, board.getBox(row, column), board.getBox(row2, column2))) {
                                         protectingPiece = board.getBox(row, column).getPiece();
                                         board.getBox(row2, column2).setPiece(protectingPiece);
                                         board.getBox(row, column).setPiece(null);
@@ -220,6 +220,10 @@ public class King extends Piece {
                                             board.getBox(row, column).setPiece(protectingPiece);
                                             board.getBox(row2, column2).setPiece(null);
                                             return false;
+                                        }
+                                        else {
+                                            board.getBox(row, column).setPiece(protectingPiece);
+                                            board.getBox(row2, column2).setPiece(null);
                                         }
                                     }
                                 }
