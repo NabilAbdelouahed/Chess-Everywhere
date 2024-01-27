@@ -90,7 +90,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_weight="1"
-            android:background="@drawable/green_tile"
+            android:background="@drawable/white_tile"
             android:onClick="show_moves"
             android:scaleType="centerCrop"
             android:src="@drawable/black_rook_rotated" />
@@ -100,7 +100,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_weight="1"
-            android:background="@drawable/white_tile"
+            android:background="@drawable/green_tile"
             android:onClick="show_moves"
             android:scaleType="centerCrop"
             android:src="@drawable/black_knight_rotated" />
@@ -110,7 +110,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_weight="1"
-            android:background="@drawable/green_tile"
+            android:background="@drawable/white_tile"
             android:onClick="show_moves"
             android:scaleType="centerCrop"
             android:src="@drawable/black_bishop_rotated" />
@@ -120,27 +120,27 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_weight="1"
-            android:background="@drawable/white_tile"
-            android:onClick="show_moves"
-            android:scaleType="centerCrop"
-            android:src="@drawable/black_king_rotated" />
-
-        <ImageButton
-            android:id="@+id/button74"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_weight="1"
             android:background="@drawable/green_tile"
             android:onClick="show_moves"
             android:scaleType="centerCrop"
             android:src="@drawable/black_queen_rotated" />
 
         <ImageButton
-            android:id="@+id/button75"
+            android:id="@+id/button74"
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_weight="1"
             android:background="@drawable/white_tile"
+            android:onClick="show_moves"
+            android:scaleType="centerCrop"
+            android:src="@drawable/black_king_rotated" />
+
+        <ImageButton
+            android:id="@+id/button75"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_weight="1"
+            android:background="@drawable/green_tile"
             android:onClick="show_moves"
             android:scaleType="centerCrop"
             android:src="@drawable/black_bishop_rotated" />
@@ -150,7 +150,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_weight="1"
-            android:background="@drawable/green_tile"
+            android:background="@drawable/white_tile"
             android:onClick="show_moves"
             android:scaleType="centerCrop"
             android:src="@drawable/black_knight_rotated" />
@@ -160,7 +160,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_weight="1"
-            android:background="@drawable/white_tile"
+            android:background="@drawable/green_tile"
             android:onClick="show_moves"
             android:scaleType="centerCrop"
             android:src="@drawable/black_rook_rotated" />
@@ -170,7 +170,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_weight="1"
-            android:background="@drawable/white_tile"
+            android:background="@drawable/green_tile"
             android:onClick="show_moves"
             android:scaleType="centerCrop"
             android:src="@drawable/black_pawn_rotated" />
@@ -180,7 +180,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_weight="1"
-            android:background="@drawable/green_tile"
+            android:background="@drawable/white_tile"
             android:onClick="show_moves"
             android:scaleType="centerCrop"
             android:src="@drawable/black_pawn_rotated" />
@@ -190,7 +190,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_weight="1"
-            android:background="@drawable/white_tile"
+            android:background="@drawable/green_tile"
             android:onClick="show_moves"
             android:scaleType="centerCrop"
             android:src="@drawable/black_pawn_rotated" />
@@ -200,7 +200,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_weight="1"
-            android:background="@drawable/green_tile"
+            android:background="@drawable/white_tile"
             android:onClick="show_moves"
             android:scaleType="centerCrop"
             android:src="@drawable/black_pawn_rotated" />
@@ -210,7 +210,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_weight="1"
-            android:background="@drawable/white_tile"
+            android:background="@drawable/green_tile"
             android:onClick="show_moves"
             android:scaleType="centerCrop"
             android:src="@drawable/black_pawn_rotated" />
@@ -220,7 +220,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_weight="1"
-            android:background="@drawable/green_tile"
+            android:background="@drawable/white_tile"
             android:onClick="show_moves"
             android:scaleType="centerCrop"
             android:src="@drawable/black_pawn_rotated" />
@@ -230,7 +230,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_weight="1"
-            android:background="@drawable/white_tile"
+            android:background="@drawable/green_tile"
             android:onClick="show_moves"
             android:scaleType="centerCrop"
             android:src="@drawable/black_pawn_rotated" />
@@ -240,7 +240,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_weight="1"
-            android:background="@drawable/green_tile"
+            android:background="@drawable/white_tile"
             android:onClick="show_moves"
             android:scaleType="centerCrop"
             android:src="@drawable/black_pawn_rotated" />
@@ -250,7 +250,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_weight="1"
-            android:background="@drawable/green_tile"
+            android:background="@drawable/white_tile"
             android:onClick="show_moves"
             android:scaleType="centerCrop" />
 
@@ -259,7 +259,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_weight="1"
-            android:background="@drawable/white_tile"
+            android:background="@drawable/green_tile"
             android:onClick="show_moves"
             android:scaleType="centerCrop" />
 
@@ -268,7 +268,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_weight="1"
-            android:background="@drawable/green_tile"
+            android:background="@drawable/white_tile"
             android:onClick="show_moves"
             android:scaleType="centerCrop" />
 
@@ -277,7 +277,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_weight="1"
-            android:background="@drawable/white_tile"
+            android:background="@drawable/green_tile"
             android:onClick="show_moves"
             android:scaleType="centerCrop" />
 
@@ -286,7 +286,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_weight="1"
-            android:background="@drawable/green_tile"
+            android:background="@drawable/white_tile"
             android:onClick="show_moves"
             android:scaleType="centerCrop" />
 
@@ -295,7 +295,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_weight="1"
-            android:background="@drawable/white_tile"
+            android:background="@drawable/green_tile"
             android:onClick="show_moves"
             android:scaleType="centerCrop" />
 
@@ -304,7 +304,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_weight="1"
-            android:background="@drawable/green_tile"
+            android:background="@drawable/white_tile"
             android:onClick="show_moves"
             android:scaleType="centerCrop" />
 
@@ -313,7 +313,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_weight="1"
-            android:background="@drawable/white_tile"
+            android:background="@drawable/green_tile"
             android:onClick="show_moves"
             android:scaleType="centerCrop" />
 
@@ -322,7 +322,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_weight="1"
-            android:background="@drawable/white_tile"
+            android:background="@drawable/green_tile"
             android:onClick="show_moves"
             android:scaleType="centerCrop" />
 
@@ -331,7 +331,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_weight="1"
-            android:background="@drawable/green_tile"
+            android:background="@drawable/white_tile"
             android:onClick="show_moves"
             android:scaleType="centerCrop" />
 
@@ -340,7 +340,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_weight="1"
-            android:background="@drawable/white_tile"
+            android:background="@drawable/green_tile"
             android:onClick="show_moves"
             android:scaleType="centerCrop" />
 
@@ -349,7 +349,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_weight="1"
-            android:background="@drawable/green_tile"
+            android:background="@drawable/white_tile"
             android:onClick="show_moves"
             android:scaleType="centerCrop" />
 
@@ -358,7 +358,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_weight="1"
-            android:background="@drawable/white_tile"
+            android:background="@drawable/green_tile"
             android:onClick="show_moves"
             android:scaleType="centerCrop" />
 
@@ -367,7 +367,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_weight="1"
-            android:background="@drawable/green_tile"
+            android:background="@drawable/white_tile"
             android:onClick="show_moves"
             android:scaleType="centerCrop" />
 
@@ -376,7 +376,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_weight="1"
-            android:background="@drawable/white_tile"
+            android:background="@drawable/green_tile"
             android:onClick="show_moves"
             android:scaleType="centerCrop" />
 
@@ -385,7 +385,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_weight="1"
-            android:background="@drawable/green_tile"
+            android:background="@drawable/white_tile"
             android:onClick="show_moves"
             android:scaleType="centerCrop" />
 
@@ -394,7 +394,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_weight="1"
-            android:background="@drawable/green_tile"
+            android:background="@drawable/white_tile"
             android:onClick="show_moves"
             android:scaleType="centerCrop" />
 
@@ -403,7 +403,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_weight="1"
-            android:background="@drawable/white_tile"
+            android:background="@drawable/green_tile"
             android:onClick="show_moves"
             android:scaleType="centerCrop" />
 
@@ -412,7 +412,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_weight="1"
-            android:background="@drawable/green_tile"
+            android:background="@drawable/white_tile"
             android:onClick="show_moves"
             android:scaleType="centerCrop" />
 
@@ -421,7 +421,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_weight="1"
-            android:background="@drawable/white_tile"
+            android:background="@drawable/green_tile"
             android:onClick="show_moves"
             android:scaleType="centerCrop" />
 
@@ -430,7 +430,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_weight="1"
-            android:background="@drawable/green_tile"
+            android:background="@drawable/white_tile"
             android:onClick="show_moves"
             android:scaleType="centerCrop" />
 
@@ -439,7 +439,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_weight="1"
-            android:background="@drawable/white_tile"
+            android:background="@drawable/green_tile"
             android:onClick="show_moves"
             android:scaleType="centerCrop" />
 
@@ -448,7 +448,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_weight="1"
-            android:background="@drawable/green_tile"
+            android:background="@drawable/white_tile"
             android:onClick="show_moves"
             android:scaleType="centerCrop" />
 
@@ -457,7 +457,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_weight="1"
-            android:background="@drawable/white_tile"
+            android:background="@drawable/green_tile"
             android:onClick="show_moves"
             android:scaleType="centerCrop" />
 
@@ -466,7 +466,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_weight="1"
-            android:background="@drawable/white_tile"
+            android:background="@drawable/green_tile"
             android:onClick="show_moves"
             android:scaleType="centerCrop" />
 
@@ -475,7 +475,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_weight="1"
-            android:background="@drawable/green_tile"
+            android:background="@drawable/white_tile"
             android:onClick="show_moves"
             android:scaleType="centerCrop" />
 
@@ -484,7 +484,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_weight="1"
-            android:background="@drawable/white_tile"
+            android:background="@drawable/green_tile"
             android:onClick="show_moves"
             android:scaleType="centerCrop" />
 
@@ -493,7 +493,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_weight="1"
-            android:background="@drawable/green_tile"
+            android:background="@drawable/white_tile"
             android:onClick="show_moves"
             android:scaleType="centerCrop" />
 
@@ -502,7 +502,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_weight="1"
-            android:background="@drawable/white_tile"
+            android:background="@drawable/green_tile"
             android:onClick="show_moves"
             android:scaleType="centerCrop" />
 
@@ -511,7 +511,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_weight="1"
-            android:background="@drawable/green_tile"
+            android:background="@drawable/white_tile"
             android:onClick="show_moves"
             android:scaleType="centerCrop" />
 
@@ -520,7 +520,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_weight="1"
-            android:background="@drawable/white_tile"
+            android:background="@drawable/green_tile"
             android:onClick="show_moves"
             android:scaleType="centerCrop" />
 
@@ -529,7 +529,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_weight="1"
-            android:background="@drawable/green_tile"
+            android:background="@drawable/white_tile"
             android:onClick="show_moves"
             android:scaleType="centerCrop" />
 
@@ -538,7 +538,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_weight="1"
-            android:background="@drawable/green_tile"
+            android:background="@drawable/white_tile"
             android:onClick="show_moves"
             android:scaleType="centerCrop"
             android:src="@drawable/white_pawn" />
@@ -548,7 +548,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_weight="1"
-            android:background="@drawable/white_tile"
+            android:background="@drawable/green_tile"
             android:onClick="show_moves"
             android:scaleType="centerCrop"
             android:src="@drawable/white_pawn" />
@@ -558,7 +558,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_weight="1"
-            android:background="@drawable/green_tile"
+            android:background="@drawable/white_tile"
             android:onClick="show_moves"
             android:scaleType="centerCrop"
             android:src="@drawable/white_pawn" />
@@ -568,7 +568,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_weight="1"
-            android:background="@drawable/white_tile"
+            android:background="@drawable/green_tile"
             android:onClick="show_moves"
             android:scaleType="centerCrop"
             android:src="@drawable/white_pawn" />
@@ -578,7 +578,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_weight="1"
-            android:background="@drawable/green_tile"
+            android:background="@drawable/white_tile"
             android:onClick="show_moves"
             android:scaleType="centerCrop"
             android:src="@drawable/white_pawn" />
@@ -588,7 +588,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_weight="1"
-            android:background="@drawable/white_tile"
+            android:background="@drawable/green_tile"
             android:onClick="show_moves"
             android:scaleType="centerCrop"
             android:src="@drawable/white_pawn" />
@@ -598,7 +598,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_weight="1"
-            android:background="@drawable/green_tile"
+            android:background="@drawable/white_tile"
             android:onClick="show_moves"
             android:scaleType="centerCrop"
             android:src="@drawable/white_pawn" />
@@ -608,7 +608,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_weight="1"
-            android:background="@drawable/white_tile"
+            android:background="@drawable/green_tile"
             android:onClick="show_moves"
             android:scaleType="centerCrop"
             android:src="@drawable/white_pawn" />
@@ -618,7 +618,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_weight="1"
-            android:background="@drawable/white_tile"
+            android:background="@drawable/green_tile"
             android:onClick="show_moves"
             android:scaleType="centerCrop"
             android:src="@drawable/white_rook" />
@@ -628,7 +628,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_weight="1"
-            android:background="@drawable/green_tile"
+            android:background="@drawable/white_tile"
             android:onClick="show_moves"
             android:scaleType="centerCrop"
             android:src="@drawable/white_knight" />
@@ -638,7 +638,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_weight="1"
-            android:background="@drawable/white_tile"
+            android:background="@drawable/green_tile"
             android:onClick="show_moves"
             android:scaleType="centerCrop"
             android:src="@drawable/white_bishop" />
@@ -648,27 +648,27 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_weight="1"
-            android:background="@drawable/green_tile"
-            android:onClick="show_moves"
-            android:scaleType="centerCrop"
-            android:src="@drawable/white_king" />
-
-        <ImageButton
-            android:id="@+id/button04"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_weight="1"
             android:background="@drawable/white_tile"
             android:onClick="show_moves"
             android:scaleType="centerCrop"
             android:src="@drawable/white_queen" />
 
         <ImageButton
-            android:id="@+id/button05"
+            android:id="@+id/button04"
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_weight="1"
             android:background="@drawable/green_tile"
+            android:onClick="show_moves"
+            android:scaleType="centerCrop"
+            android:src="@drawable/white_king" />
+
+        <ImageButton
+            android:id="@+id/button05"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_weight="1"
+            android:background="@drawable/white_tile"
             android:onClick="show_moves"
             android:scaleType="centerCrop"
             android:src="@drawable/white_bishop" />
@@ -678,7 +678,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_weight="1"
-            android:background="@drawable/white_tile"
+            android:background="@drawable/green_tile"
             android:onClick="show_moves"
             android:scaleType="centerCrop"
             android:src="@drawable/white_knight" />
@@ -688,7 +688,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_weight="1"
-            android:background="@drawable/green_tile"
+            android:background="@drawable/white_tile"
             android:onClick="show_moves"
             android:scaleType="centerCrop"
             android:src="@drawable/white_rook" />
