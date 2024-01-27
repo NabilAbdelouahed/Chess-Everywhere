@@ -205,11 +205,15 @@ public class TimerGame extends AppCompatActivity {
                     tempPiece = tile.getPiece();
                     tile.setPiece(swapPiece);
                     swapTile.setPiece(null);
+                    if (currentTurn.isWhiteSide() && swapPiece instanceof King) {
+                        whiteKingPosition[0] = tile.getX();
+                        whiteKingPosition[1] = tile.getY();
+                    }
+                    if (!currentTurn.isWhiteSide() && swapPiece instanceof King) {
+                        blackKingPosition[0] = tile.getX();
+                        blackKingPosition[1] = tile.getY();
+                    }
                     if (currentTurn.isWhiteSide() && !((King) board.getBox(whiteKingPosition[0], whiteKingPosition[1]).getPiece()).isKingChecked(board, board.getBox(whiteKingPosition[0], whiteKingPosition[1]), (King) board.getBox(whiteKingPosition[0], whiteKingPosition[1]).getPiece())){
-                        if (swapPiece instanceof King) {
-                            whiteKingPosition[0] = tile.getX();
-                            whiteKingPosition[1] = tile.getY();
-                        }
                         if (swapPiece instanceof Pawn && tile.getX()==7 && swapPiece.isWhite()){
                             showPawnPromotionDialog(board,swapTile,tile,swapPiece.isWhite());
                         }
@@ -224,10 +228,6 @@ public class TimerGame extends AppCompatActivity {
                         }
                     }
                     else if (!currentTurn.isWhiteSide() && !((King) board.getBox(blackKingPosition[0], blackKingPosition[1]).getPiece()).isKingChecked(board, board.getBox(blackKingPosition[0], blackKingPosition[1]), (King) board.getBox(blackKingPosition[0], blackKingPosition[1]).getPiece())){
-                        if (swapPiece instanceof King) {
-                            blackKingPosition[0] = tile.getX();
-                            blackKingPosition[1] = tile.getY();
-                        }
                         if (swapPiece instanceof Pawn && tile.getX()==0 && !swapPiece.isWhite()){
                             showPawnPromotionDialog(board,swapTile,tile,swapPiece.isWhite());
                         }
@@ -245,11 +245,17 @@ public class TimerGame extends AppCompatActivity {
                     else{
                         tile.setPiece(tempPiece);
                         swapTile.setPiece(swapPiece);
+                        if (currentTurn.isWhiteSide() && swapPiece instanceof King) {
+                            whiteKingPosition[0] = swapTile.getX();
+                            whiteKingPosition[1] = swapTile.getY();
+                        }
+                        if (!currentTurn.isWhiteSide() && swapPiece instanceof King) {
+                            blackKingPosition[0] = swapTile.getX();
+                            blackKingPosition[1] = swapTile.getY();
+                        }
                     }
                 }
             }
-            Log.i("chechek", "white" + String.valueOf(isWhiteChecked));
-            Log.i("checked", "black " + String.valueOf(isBlackChecked));
             isFirstClick = true;
         }
     }
