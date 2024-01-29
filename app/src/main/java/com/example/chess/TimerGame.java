@@ -409,6 +409,7 @@ public class TimerGame extends AppCompatActivity {
         CharSequence[] items = {"Queen", "Rook", "Bishop", "Knight"};
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Choose piece for promotion");
+        builder.setCancelable(false);
         builder.setItems(items, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
