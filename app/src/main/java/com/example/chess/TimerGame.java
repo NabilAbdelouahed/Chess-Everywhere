@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
@@ -39,6 +40,7 @@ public class TimerGame extends AppCompatActivity {
     private boolean isWhiteChecked = false;
     private boolean isBlackChecked = false;
     private Piece tempPiece;
+    private Drawable tempTileColor;
 
 
 
@@ -124,12 +126,15 @@ public class TimerGame extends AppCompatActivity {
                         swapTile.setPiece(null);
                         if (!(((King) tile.getPiece()).isKingChecked(board, tile, (King) tile.getPiece()))) {
                             isWhiteChecked = false;
+                            buttons[whiteKingPosition[0]][whiteKingPosition[1]].setBackground(tempTileColor);
                             whiteKingPosition[0] = tile.getX();
                             whiteKingPosition[1] = tile.getY();
                             update_board();
                             switchTurn(time);
                             if (((King) board.getBox(blackKingPosition[0], blackKingPosition[1]).getPiece()).isKingChecked(board, board.getBox(blackKingPosition[0], blackKingPosition[1]), (King) board.getBox(blackKingPosition[0], blackKingPosition[1]).getPiece())){
                                 isBlackChecked = true;
+                                tempTileColor =  buttons[blackKingPosition[0]][blackKingPosition[1]].getBackground();
+                                buttons[blackKingPosition[0]][blackKingPosition[1]].setBackground(getDrawable(R.drawable.red_tile));
                             }
                         }
                         else{
@@ -143,6 +148,7 @@ public class TimerGame extends AppCompatActivity {
                         swapTile.setPiece(null);
                         if (!(((King) board.getBox(whiteKingPosition[0], whiteKingPosition[1]).getPiece()).isKingChecked(board, board.getBox(whiteKingPosition[0], whiteKingPosition[1]), (King) board.getBox(whiteKingPosition[0], whiteKingPosition[1]).getPiece()))) {
                             isWhiteChecked = false;
+                            buttons[whiteKingPosition[0]][whiteKingPosition[1]].setBackground(tempTileColor);
                             if (swapPiece instanceof Pawn && tile.getX()==7){
                                 showPawnPromotionDialog(board,swapTile,tile,swapPiece.isWhite());
                             }
@@ -150,6 +156,8 @@ public class TimerGame extends AppCompatActivity {
                             switchTurn(time);
                             if (((King) board.getBox(blackKingPosition[0], blackKingPosition[1]).getPiece()).isKingChecked(board, board.getBox(blackKingPosition[0], blackKingPosition[1]), (King) board.getBox(blackKingPosition[0], blackKingPosition[1]).getPiece())){
                                 isBlackChecked = true;
+                                tempTileColor =  buttons[blackKingPosition[0]][blackKingPosition[1]].getBackground();
+                                buttons[blackKingPosition[0]][blackKingPosition[1]].setBackground(getDrawable(R.drawable.red_tile));
                             }
                         }
                         else{
@@ -165,12 +173,15 @@ public class TimerGame extends AppCompatActivity {
                         swapTile.setPiece(null);
                         if (!(((King) tile.getPiece()).isKingChecked(board, tile, (King) tile.getPiece()))) {
                             isBlackChecked = false;
+                            buttons[blackKingPosition[0]][blackKingPosition[1]].setBackground(tempTileColor);
                             blackKingPosition[0] = tile.getX();
                             blackKingPosition[1] = tile.getY();
                             update_board();
                             switchTurn(time);
                             if (((King) board.getBox(whiteKingPosition[0], whiteKingPosition[1]).getPiece()).isKingChecked(board, board.getBox(whiteKingPosition[0], whiteKingPosition[1]), (King) board.getBox(whiteKingPosition[0], whiteKingPosition[1]).getPiece())){
                                 isWhiteChecked = true;
+                                tempTileColor =  buttons[whiteKingPosition[0]][whiteKingPosition[1]].getBackground();
+                                buttons[whiteKingPosition[0]][whiteKingPosition[1]].setBackground(getDrawable(R.drawable.red_tile));
                             }
                         }
                         else{
@@ -184,6 +195,7 @@ public class TimerGame extends AppCompatActivity {
                         swapTile.setPiece(null);
                         if (!(((King) board.getBox(blackKingPosition[0], blackKingPosition[1]).getPiece()).isKingChecked(board, board.getBox(blackKingPosition[0], blackKingPosition[1]), (King) board.getBox(blackKingPosition[0], blackKingPosition[1]).getPiece()))) {
                             isBlackChecked = false;
+                            buttons[blackKingPosition[0]][blackKingPosition[1]].setBackground(tempTileColor);
                             if (swapPiece instanceof Pawn && tile.getX()==0){
                                 showPawnPromotionDialog(board,swapTile,tile,swapPiece.isWhite());
                             }
@@ -192,6 +204,8 @@ public class TimerGame extends AppCompatActivity {
 
                             if (((King) board.getBox(whiteKingPosition[0], whiteKingPosition[1]).getPiece()).isKingChecked(board, board.getBox(whiteKingPosition[0], whiteKingPosition[1]), (King) board.getBox(whiteKingPosition[0], whiteKingPosition[1]).getPiece())){
                                 isWhiteChecked = true;
+                                tempTileColor =  buttons[whiteKingPosition[0]][whiteKingPosition[1]].getBackground();
+                                buttons[whiteKingPosition[0]][whiteKingPosition[1]].setBackground(getDrawable(R.drawable.red_tile));
                             }
                         }
                         else{
@@ -213,7 +227,7 @@ public class TimerGame extends AppCompatActivity {
                         blackKingPosition[0] = tile.getX();
                         blackKingPosition[1] = tile.getY();
                     }
-                    if (currentTurn.isWhiteSide() && !((King) board.getBox(whiteKingPosition[0], whiteKingPosition[1]).getPiece()).isKingChecked(board, board.getBox(whiteKingPosition[0], whiteKingPosition[1]), (King) board.getBox(whiteKingPosition[0], whiteKingPosition[1]).getPiece())){
+                    if (currentTurn.isWhiteSide() ){  //&& !((King) board.getBox(whiteKingPosition[0], whiteKingPosition[1]).getPiece()).isKingChecked(board, board.getBox(whiteKingPosition[0], whiteKingPosition[1]), (King) board.getBox(whiteKingPosition[0], whiteKingPosition[1]).getPiece())
                         if (swapPiece instanceof Pawn && tile.getX()==7 && swapPiece.isWhite()){
                             showPawnPromotionDialog(board,swapTile,tile,swapPiece.isWhite());
                         }
@@ -221,13 +235,15 @@ public class TimerGame extends AppCompatActivity {
                         switchTurn(time);
                         if (((King) board.getBox(blackKingPosition[0], blackKingPosition[1]).getPiece()).isKingChecked(board, board.getBox(blackKingPosition[0], blackKingPosition[1]), (King) board.getBox(blackKingPosition[0], blackKingPosition[1]).getPiece())){
                             isBlackChecked = true;
+                            tempTileColor =  buttons[blackKingPosition[0]][blackKingPosition[1]].getBackground();
+                            buttons[blackKingPosition[0]][blackKingPosition[1]].setBackground(getDrawable(R.drawable.red_tile));
                             if (((King) board.getBox(blackKingPosition[0], blackKingPosition[1]).getPiece()).isKingMated(board, board.getBox(blackKingPosition[0], blackKingPosition[1]), (King) board.getBox(blackKingPosition[0], blackKingPosition[1]).getPiece())){
                                 status = GameStatus.CHECKMATE_WHITE_WIN;
                                 showGameEndDialog("White wins by checkmate");
                             }
                         }
                     }
-                    else if (!currentTurn.isWhiteSide() && !((King) board.getBox(blackKingPosition[0], blackKingPosition[1]).getPiece()).isKingChecked(board, board.getBox(blackKingPosition[0], blackKingPosition[1]), (King) board.getBox(blackKingPosition[0], blackKingPosition[1]).getPiece())){
+                    else if (!currentTurn.isWhiteSide() ){  //&& !((King) board.getBox(blackKingPosition[0], blackKingPosition[1]).getPiece()).isKingChecked(board, board.getBox(blackKingPosition[0], blackKingPosition[1]), (King) board.getBox(blackKingPosition[0], blackKingPosition[1]).getPiece())
                         if (swapPiece instanceof Pawn && tile.getX()==0 && !swapPiece.isWhite()){
                             showPawnPromotionDialog(board,swapTile,tile,swapPiece.isWhite());
                         }
@@ -235,6 +251,8 @@ public class TimerGame extends AppCompatActivity {
                         switchTurn(time);
                         if (((King) board.getBox(whiteKingPosition[0], whiteKingPosition[1]).getPiece()).isKingChecked(board, board.getBox(whiteKingPosition[0], whiteKingPosition[1]), (King) board.getBox(whiteKingPosition[0], whiteKingPosition[1]).getPiece())){
                             isWhiteChecked = true;
+                            tempTileColor =  buttons[whiteKingPosition[0]][whiteKingPosition[1]].getBackground();
+                            buttons[whiteKingPosition[0]][whiteKingPosition[1]].setBackground(getDrawable(R.drawable.red_tile));
                             if (((King) board.getBox(whiteKingPosition[0], whiteKingPosition[1]).getPiece()).isKingMated(board, board.getBox(whiteKingPosition[0], whiteKingPosition[1]), (King) board.getBox(whiteKingPosition[0], whiteKingPosition[1]).getPiece())){
                                 status = GameStatus.CHECKMATE_BLACK_WIN;
                                 showGameEndDialog("Black wins by checkmate");
@@ -402,6 +420,28 @@ public class TimerGame extends AppCompatActivity {
     public void promotePawn(Board board, Tile start, Tile end, Piece piece){
         end.setPiece(piece);
         start.setPiece(null);
+        if (!piece.isWhite()){
+            if (((King) board.getBox(whiteKingPosition[0], whiteKingPosition[1]).getPiece()).isKingChecked(board, board.getBox(whiteKingPosition[0], whiteKingPosition[1]), (King) board.getBox(whiteKingPosition[0], whiteKingPosition[1]).getPiece())){
+                isWhiteChecked = true;
+                tempTileColor =  buttons[whiteKingPosition[0]][whiteKingPosition[1]].getBackground();
+                buttons[whiteKingPosition[0]][whiteKingPosition[1]].setBackground(getDrawable(R.drawable.red_tile));
+                if (((King) board.getBox(whiteKingPosition[0], whiteKingPosition[1]).getPiece()).isKingMated(board, board.getBox(whiteKingPosition[0], whiteKingPosition[1]), (King) board.getBox(whiteKingPosition[0], whiteKingPosition[1]).getPiece())){
+                    status = GameStatus.CHECKMATE_BLACK_WIN;
+                    showGameEndDialog("Black wins by checkmate");
+                }
+            }
+        }
+        else{
+            if (((King) board.getBox(blackKingPosition[0], blackKingPosition[1]).getPiece()).isKingChecked(board, board.getBox(blackKingPosition[0], blackKingPosition[1]), (King) board.getBox(blackKingPosition[0], blackKingPosition[1]).getPiece())){
+                isBlackChecked = true;
+                tempTileColor =  buttons[blackKingPosition[0]][blackKingPosition[1]].getBackground();
+                buttons[blackKingPosition[0]][blackKingPosition[1]].setBackground(getDrawable(R.drawable.red_tile));
+                if (((King) board.getBox(blackKingPosition[0], blackKingPosition[1]).getPiece()).isKingMated(board, board.getBox(blackKingPosition[0], blackKingPosition[1]), (King) board.getBox(blackKingPosition[0], blackKingPosition[1]).getPiece())){
+                    status = GameStatus.CHECKMATE_WHITE_WIN;
+                    showGameEndDialog("White wins by checkmate");
+                }
+            }
+        }
         update_board();
     }
 
@@ -415,10 +455,10 @@ public class TimerGame extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 // 'which' is the index of the selected item
                 switch (which) {
-                    case 0: promotePawn(board,start,end,new Queen(white)); break;
-                    case 1: promotePawn(board,start,end,new Rook(white)); break;
-                    case 2: promotePawn(board,start,end,new Bishop(white)); break;
-                    case 3: promotePawn(board,start,end,new Knight(white)); break;
+                    case 0: promotePawn(board, start,end,new Queen(white)); break;
+                    case 1: promotePawn(board, start,end,new Rook(white)); break;
+                    case 2: promotePawn(board, start,end,new Bishop(white)); break;
+                    case 3: promotePawn(board, start,end,new Knight(white)); break;
                 }
             }
         });
