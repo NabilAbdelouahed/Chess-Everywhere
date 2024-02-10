@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -76,6 +77,8 @@ public class TimerGame extends AppCompatActivity {
             updateCountDownText(timerTextViewPlayer2, time * 60 * 1000);
 
             timerPlayer1.start(timerTextViewPlayer1);
+            timerTextViewPlayer1.setBackgroundColor(Color.BLACK);
+
         }
 
     }
@@ -305,7 +308,7 @@ public class TimerGame extends AppCompatActivity {
         }
     }
 
-        private void update_board(){
+    private void update_board(){
             for (int x = 0; x < 8; x++) {
                 for (int y = 0; y < 8; y++) {
                     String buttonID = "button" + x + y;
@@ -348,6 +351,8 @@ public class TimerGame extends AppCompatActivity {
                 }
                 timerPlayer1.pause();
                 timerPlayer2.start(timerTextViewPlayer2);
+                timerTextViewPlayer1.setBackgroundColor(0);
+                timerTextViewPlayer2.setBackgroundColor(Color.BLACK);
             }
         }
         else {
@@ -358,6 +363,8 @@ public class TimerGame extends AppCompatActivity {
                 }
                 timerPlayer2.pause();
                 timerPlayer1.start(timerTextViewPlayer1);
+                timerTextViewPlayer2.setBackgroundColor(0);
+                timerTextViewPlayer1.setBackgroundColor(Color.BLACK);
             }
         }
     }

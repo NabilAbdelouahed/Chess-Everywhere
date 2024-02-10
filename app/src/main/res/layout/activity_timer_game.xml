@@ -32,7 +32,7 @@
         android:rotationY="180"
         android:text=""
         android:textColor="@color/white"
-        android:textSize="18sp" />
+        android:textSize="20sp" />
 
     <Space
         android:layout_width="match_parent"
@@ -502,12 +502,13 @@
         android:layout_height="50dp" />
 
     <TextView
-    android:id="@+id/timer1"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text=""
-    android:textSize="18sp" android:textColor="@color/white"
-    android:layout_gravity="center" />
+        android:id="@+id/timer1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text=""
+        android:textColor="@color/white"
+        android:textSize="18sp" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
