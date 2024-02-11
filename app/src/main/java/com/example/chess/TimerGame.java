@@ -252,7 +252,6 @@ public class TimerGame extends AppCompatActivity {
                         }
                         update_board();
                         switchTurn(time);
-
                         if (((King) board.getBox(blackKingPosition[0], blackKingPosition[1]).getPiece()).isKingChecked(board, board.getBox(blackKingPosition[0], blackKingPosition[1]), (King) board.getBox(blackKingPosition[0], blackKingPosition[1]).getPiece())){
                             isBlackChecked = true;
                             tempTileColor =  buttons[blackKingPosition[0]][blackKingPosition[1]].getBackground();
@@ -262,7 +261,6 @@ public class TimerGame extends AppCompatActivity {
                                 showGameEndDialog("White wins by checkmate");
                             }
                         }
-
                         else if (isStaleMate(board)){
                             status = GameStatus.STALEMATE_DRAW;
                             showGameEndDialog("Draw by stalemate");
@@ -291,6 +289,7 @@ public class TimerGame extends AppCompatActivity {
 
                     }
                     else{
+
                         tile.setPiece(tempPiece);
                         swapTile.setPiece(swapPiece);
                         if (currentTurn.isWhiteSide() && swapPiece instanceof King) {
@@ -303,6 +302,10 @@ public class TimerGame extends AppCompatActivity {
                         }
                     }
                 }
+            }
+            if (isDrawByInsufficientMaterial(board)){
+                status = GameStatus.INSUFFICIENT_MATERIAL_DRAW;
+                showGameEndDialog("Draw by insufficient material");
             }
             isFirstClick = true;
         }
@@ -503,7 +506,7 @@ public class TimerGame extends AppCompatActivity {
 
     private boolean isStaleMate(Board board){
 
-        if (currentTurn.isWhiteSide() && !((King) board.getBox(whiteKingPosition[0], whiteKingPosition[1]).getPiece()).isKingChecked(board, board.getBox(whiteKingPosition[0], whiteKingPosition[1]), (King) board.getBox(whiteKingPosition[0], whiteKingPosition[1]).getPiece())){
+        if (currentTurn.isWhiteSide()){
             for (int row = 0; row < 8; row++) {
                 for (int column = 0; column < 8; column++) {
                     if (board.getBox(row, column).getPiece() != null && board.getBox(row, column).getPiece().isWhite()) {
@@ -514,13 +517,25 @@ public class TimerGame extends AppCompatActivity {
                                     Piece tempPieceSwap = board.getBox(row1, column1).getPiece();
                                     board.getBox(row, column).setPiece(null);
                                     board.getBox(row1, column1).setPiece(tempPieceStale);
+                                    if (tempPieceStale instanceof King){
+                                        whiteKingPosition[0] = row1;
+                                        whiteKingPosition[1] = column1;
+                                    }
                                     if (((King) board.getBox(whiteKingPosition[0], whiteKingPosition[1]).getPiece()).isKingChecked(board, board.getBox(whiteKingPosition[0], whiteKingPosition[1]), (King) board.getBox(whiteKingPosition[0], whiteKingPosition[1]).getPiece())){
                                         board.getBox(row, column).setPiece(tempPieceStale);
                                         board.getBox(row1, column1).setPiece(tempPieceSwap);
+                                        if (tempPieceStale instanceof King){
+                                            whiteKingPosition[0] = row;
+                                            whiteKingPosition[1] = column;
+                                        }
                                     }
                                     else{
                                         board.getBox(row, column).setPiece(tempPieceStale);
                                         board.getBox(row1, column1).setPiece(tempPieceSwap);
+                                        if (tempPieceStale instanceof King){
+                                            whiteKingPosition[0] = row;
+                                            whiteKingPosition[1] = column;
+                                        }
                                         return false;
                                     }
                                 }
@@ -530,7 +545,7 @@ public class TimerGame extends AppCompatActivity {
                 }
             }
         }
-        else if (!currentTurn.isWhiteSide() && !((King) board.getBox(blackKingPosition[0], blackKingPosition[1]).getPiece()).isKingChecked(board, board.getBox(blackKingPosition[0], blackKingPosition[1]), (King) board.getBox(blackKingPosition[0], blackKingPosition[1]).getPiece())){
+        else if (!currentTurn.isWhiteSide() ){
 
             for (int row = 0; row < 8; row++) {
                 for (int column = 0; column < 8; column++) {
@@ -542,13 +557,26 @@ public class TimerGame extends AppCompatActivity {
                                     Piece tempPieceSwap = board.getBox(row1, column1).getPiece();
                                     board.getBox(row, column).setPiece(null);
                                     board.getBox(row1, column1).setPiece(tempPieceStale);
+                                    if (tempPieceStale instanceof King){
+                                        blackKingPosition[0] = row1;
+                                        blackKingPosition[1] = column1;
+                                    }
+                                    Log.i("hehehe", "hhhhhhhhhhhhhh");
                                     if (((King) board.getBox(blackKingPosition[0], blackKingPosition[1]).getPiece()).isKingChecked(board, board.getBox(blackKingPosition[0], blackKingPosition[1]), (King) board.getBox(blackKingPosition[0], blackKingPosition[1]).getPiece())){
                                         board.getBox(row, column).setPiece(tempPieceStale);
                                         board.getBox(row1, column1).setPiece(tempPieceSwap);
+                                        if (tempPieceStale instanceof King){
+                                            blackKingPosition[0] = row;
+                                            blackKingPosition[1] = column;
+                                        }
                                     }
                                     else{
                                         board.getBox(row, column).setPiece(tempPieceStale);
                                         board.getBox(row1, column1).setPiece(tempPieceSwap);
+                                        if (tempPieceStale instanceof King){
+                                            blackKingPosition[0] = row;
+                                            blackKingPosition[1] = column;
+                                        }
                                         return false;
                                     }
                                 }
@@ -559,6 +587,57 @@ public class TimerGame extends AppCompatActivity {
             }
         }
         return true;
+    }
+
+    private boolean isDrawByInsufficientMaterial(Board board){
+        int whiteKnights = 0;
+        int blackKnights = 0;
+        int whiteBishops = 0;
+        int blackBishops = 0;
+        for (int row = 0; row < 8; row++) {
+            for (int column = 0; column < 8; column++) {
+                if (board.getBox(row, column).getPiece() != null){
+                    if (board.getBox(row, column).getPiece() instanceof Pawn){
+                        return false;
+                    }
+                    else if (board.getBox(row, column).getPiece() instanceof Rook){
+                        return false;
+                    }
+                    else if (board.getBox(row, column).getPiece() instanceof Queen){
+                        return false;
+                    }
+                    else if (board.getBox(row, column).getPiece() instanceof Knight){
+                        if (board.getBox(row, column).getPiece().isWhite()){
+                            whiteKnights++;
+                        }
+                        else{
+                            blackKnights++;
+                        }
+                        if (whiteKnights >= 2 || blackKnights >= 2){
+                            return false;
+                        }
+                    }
+                    else if (board.getBox(row, column).getPiece() instanceof Bishop){
+                        if (board.getBox(row, column).getPiece().isWhite()){
+                            whiteBishops++;
+                        }
+                        else{
+                            blackBishops++;
+                        }
+                        if (whiteBishops >= 2 || blackBishops >= 2){
+                            return false;
+                        }
+                    }
+                }
+            }
+        }
+        if ((whiteBishops == 1 ^ whiteKnights == 1)&& (blackBishops == 1 ^ blackKnights == 1)){
+            return true;
+        }
+        if (whiteBishops + whiteKnights + blackBishops + blackKnights <= 1){
+            return true;
+        }
+        return false;
     }
 
 }
