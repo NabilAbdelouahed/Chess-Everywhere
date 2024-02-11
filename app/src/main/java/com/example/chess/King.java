@@ -19,13 +19,6 @@ public class King extends Piece {
     public void setKingMoved() {
         this.kingMoved = true;
     }
-    public boolean kingMated() {
-        return this.checkmate;
-    }
-
-    public void setKingMated() {
-        this.checkmate = true;
-    }
 
     @Override
     public boolean canMove(Board board, Tile start, Tile end) {

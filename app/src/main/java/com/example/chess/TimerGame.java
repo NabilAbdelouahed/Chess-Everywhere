@@ -143,6 +143,10 @@ public class TimerGame extends AppCompatActivity {
                                 status = GameStatus.STALEMATE_DRAW;
                                 showGameEndDialog("Draw by stalemate");
                             }
+                            if (isDrawByInsufficientMaterial(board)){
+                                status = GameStatus.INSUFFICIENT_MATERIAL_DRAW;
+                                showGameEndDialog("Draw by insufficient material");
+                            }
                         }
                         else{
                             tile.setPiece(tempPiece);
@@ -169,6 +173,10 @@ public class TimerGame extends AppCompatActivity {
                             else if (isStaleMate(board)){
                                 status = GameStatus.STALEMATE_DRAW;
                                 showGameEndDialog("Draw by stalemate");
+                            }
+                            if (isDrawByInsufficientMaterial(board)){
+                                status = GameStatus.INSUFFICIENT_MATERIAL_DRAW;
+                                showGameEndDialog("Draw by insufficient material");
                             }
                         }
                         else{
@@ -198,6 +206,10 @@ public class TimerGame extends AppCompatActivity {
                                 status = GameStatus.STALEMATE_DRAW;
                                 showGameEndDialog("Draw by stalemate");
                             }
+                            if (isDrawByInsufficientMaterial(board)){
+                                status = GameStatus.INSUFFICIENT_MATERIAL_DRAW;
+                                showGameEndDialog("Draw by insufficient material");
+                            }
                         }
                         else{
                             tile.setPiece(tempPiece);
@@ -225,6 +237,10 @@ public class TimerGame extends AppCompatActivity {
                             else if (isStaleMate(board)){
                                 status = GameStatus.STALEMATE_DRAW;
                                 showGameEndDialog("Draw by stalemate");
+                            }
+                            if (isDrawByInsufficientMaterial(board)){
+                                status = GameStatus.INSUFFICIENT_MATERIAL_DRAW;
+                                showGameEndDialog("Draw by insufficient material");
                             }
                         }
                         else{
@@ -265,6 +281,10 @@ public class TimerGame extends AppCompatActivity {
                             status = GameStatus.STALEMATE_DRAW;
                             showGameEndDialog("Draw by stalemate");
                         }
+                        if (isDrawByInsufficientMaterial(board)){
+                            status = GameStatus.INSUFFICIENT_MATERIAL_DRAW;
+                            showGameEndDialog("Draw by insufficient material");
+                        }
                     }
                     else if (!currentTurn.isWhiteSide() && !((King) board.getBox(blackKingPosition[0], blackKingPosition[1]).getPiece()).isKingChecked(board, board.getBox(blackKingPosition[0], blackKingPosition[1]), (King) board.getBox(blackKingPosition[0], blackKingPosition[1]).getPiece())){
                         if (swapPiece instanceof Pawn && tile.getX()==0 && !swapPiece.isWhite()){
@@ -286,7 +306,10 @@ public class TimerGame extends AppCompatActivity {
                             status = GameStatus.STALEMATE_DRAW;
                             showGameEndDialog("Draw by stalemate");
                         }
-
+                        if (isDrawByInsufficientMaterial(board)){
+                            status = GameStatus.INSUFFICIENT_MATERIAL_DRAW;
+                            showGameEndDialog("Draw by insufficient material");
+                        }
                     }
                     else{
 
@@ -302,10 +325,6 @@ public class TimerGame extends AppCompatActivity {
                         }
                     }
                 }
-            }
-            if (isDrawByInsufficientMaterial(board)){
-                status = GameStatus.INSUFFICIENT_MATERIAL_DRAW;
-                showGameEndDialog("Draw by insufficient material");
             }
             isFirstClick = true;
         }

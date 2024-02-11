@@ -19,15 +19,6 @@ public abstract class Piece {
         this.white = white;
     }
 
-    public boolean isKilled()
-    {
-        return this.killed;
-    }
-
-    public void setKilled(boolean killed)
-    {
-        this.killed = killed;
-    }
     public abstract String getDrawable(boolean white);
 
     public abstract boolean canMove(Board board,

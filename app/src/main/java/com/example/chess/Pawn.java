@@ -6,6 +6,10 @@ import android.content.DialogInterface;
 import android.util.Log;
 
 public class Pawn extends Piece{
+    private Piece WhiteMovingPawn;
+    private Piece blackMovingPawn;
+    public TimerGame currentGame;
+
     public Pawn(Boolean white) {super(white);}
     @Override
     public boolean canMove(Board board, Tile start,
