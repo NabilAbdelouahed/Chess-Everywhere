@@ -1,16 +1,18 @@
 package com.example.chess;
 
+import static java.lang.Math.abs;
+
 import androidx.appcompat.app.AlertDialog;
 
 import android.content.DialogInterface;
 import android.util.Log;
 
 public class Pawn extends Piece{
-    private Piece WhiteMovingPawn;
-    private Piece blackMovingPawn;
-    public TimerGame currentGame;
+    public TimerGame currentGame = TimerGame.getCurrentInstance();
 
-    public Pawn(Boolean white) {super(white);}
+
+    public Pawn(Boolean white) {super(white);
+    this.currentGame = currentGame;}
     @Override
     public boolean canMove(Board board, Tile start,
                            Tile end) {
@@ -36,8 +38,18 @@ public class Pawn extends Piece{
             return true;
         }
         // Check for capture move
-        if (Math.abs(y) == 1 && x == direction && end.getPiece() != null ) {
+        if (abs(y) == 1 && x == direction && end.getPiece() != null ) {
             return true;
+        }
+        if (currentGame.previousPawnMove != null && currentGame.previousPawnMove.getPiece() != null){
+            if (currentGame.currentTurn.isWhiteSide() != currentGame.previousPawnMove.getPiece().isWhite()){
+                if(currentGame.currentTurn.isWhiteSide() && start.getX() == 4 && end.getX() == currentGame.previousPawnMove.getX()+1 && end.getY() == currentGame.previousPawnMove.getY() && abs(y) == 1){
+                    return true;
+                }
+                if(!currentGame.currentTurn.isWhiteSide() && start.getX() == 3 && end.getX() == currentGame.previousPawnMove.getX()-1 && end.getY() == currentGame.previousPawnMove.getY() && abs(y) == 1){
+                    return true;
+                }
+            }
         }
         return false;
     }
