@@ -46,6 +46,7 @@ public class TimerGame extends AppCompatActivity {
     private Drawable tempTileColorCheck;
     public Tile previousPawnMove = null;
     private static TimerGame currentInstance;
+    private Drawable tempTileColorSelectedPiece;
 
 
 
@@ -120,8 +121,18 @@ public class TimerGame extends AppCompatActivity {
     private void onTileClicked(Tile tile, Board board) {
 
         if ( tile.getPiece() != null && currentTurn.isWhiteSide() == tile.getPiece().isWhite()) {
+            if(swapTile != null){
+                buttons[swapTile.getX()][swapTile.getY()].setBackground(tempTileColorSelectedPiece);
+            }
             swapTile = tile;
             swapPiece = tile.getPiece();
+            tempTileColorSelectedPiece = buttons[swapTile.getX()][swapTile.getY()].getBackground();
+            if((swapTile.getX()+swapTile.getY()) % 2 == 0){
+                buttons[swapTile.getX()][swapTile.getY()].setBackground(getDrawable(R.drawable.green_tile_lighted));
+            }
+            else{
+                buttons[swapTile.getX()][swapTile.getY()].setBackground(getDrawable(R.drawable.white_tile_lighted));
+            }
             isFirstClick = false;
         }
 
@@ -377,7 +388,8 @@ public class TimerGame extends AppCompatActivity {
                     }
                 }
             }
-            isFirstClick = true;
+        buttons[swapTile.getX()][swapTile.getY()].setBackground(tempTileColorSelectedPiece);
+        isFirstClick = true;
         }
     }
 
