@@ -1,11 +1,6 @@
 package com.example.chess;
 
-import static android.content.Intent.getIntent;
 
-import static androidx.core.content.ContextCompat.startActivity;
-
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.CountDownTimer;
 import android.widget.TextView;
 

@@ -1,6 +1,5 @@
 package com.example.chess;
 
-import android.util.Log;
 
 import java.util.Optional;
 

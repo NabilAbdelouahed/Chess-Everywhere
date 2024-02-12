@@ -2,10 +2,6 @@ package com.example.chess;
 
 import static java.lang.Math.abs;
 
-import androidx.appcompat.app.AlertDialog;
-
-import android.content.DialogInterface;
-import android.util.Log;
 
 public class Pawn extends Piece{
     public TimerGame currentGame = TimerGame.getCurrentInstance();
