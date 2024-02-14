@@ -31,4 +31,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, FreeMode.class);
         startActivity(intent);
     }
+
+    public void switch_to_about_view(View view) {
+        Intent intent = new Intent(MainActivity.this, About.class);
+        startActivity(intent);
+    }
 }

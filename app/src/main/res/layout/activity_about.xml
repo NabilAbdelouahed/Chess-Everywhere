@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".About">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="\n
+        \n
+        \n
+        \n
+ChessMate is a chess app, completely crafted by Nabil Abdelouahed. \n
+        \n
+The app allows you to enjoy a good game of chess with a friend without the need for an internet connection or an account. \n
+\n
+You can also use the free mode to let loose of your imagination or simply recreate a position you want to think about. \n
+\n
+You can also have a quick look at some brief information about some openings.\n
+\n
+I hope you enjoy the app ! \n
+\n
+Don't hesitate to share your experience with a review or by reporting a bug. To do so, you can press the button bellow."
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+
+    <Button
+        android:id="@+id/contact_us"
+        android:layout_width="192dp"
+        android:layout_height="69dp"
+        android:layout_marginTop="82dp"
+        android:text="Contact us"
+        android:textColor="@color/white"
+        android:onClick="contact_us"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.181" />
+</androidx.constraintlayout.widget.ConstraintLayout>
