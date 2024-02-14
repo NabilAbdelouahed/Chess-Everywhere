@@ -48,7 +48,7 @@ public class FreeMode extends AppCompatActivity {
             tempDrawable = view.getBackground();
             tilePositionSum = (int) (Integer.valueOf(id.substring(id.length() - 2)) % 10 )+ (Integer.valueOf(id.substring(id.length() - 2)) / 10) ;
             if (tilePositionSum % 2 == 0){
-                view.setBackground(getDrawable(R.drawable.green_tile_lighted));
+                view.setBackground(getDrawable(R.drawable.blue_tile_lighted));
             }
             else{
                 view.setBackground(getDrawable(R.drawable.white_tile_lighted));

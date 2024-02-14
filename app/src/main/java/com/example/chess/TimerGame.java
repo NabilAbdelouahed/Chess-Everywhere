@@ -1,20 +1,18 @@
 package com.example.chess;
 
 
-
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import java.util.HashMap;
 import java.util.Locale;
 
 public class TimerGame extends AppCompatActivity {
@@ -41,6 +39,8 @@ public class TimerGame extends AppCompatActivity {
     public Tile previousPawnMove = null;
     private static TimerGame currentInstance;
     private Drawable tempTileColorSelectedPiece;
+    private final HashMap<String, Integer> boardStateHistory = new HashMap<>();
+
 
 
 
@@ -82,7 +82,6 @@ public class TimerGame extends AppCompatActivity {
         }
 
     }
-
     private void mapTilesToButtons() {
         for (int x = 0; x < 8; x++) {
             for (int y = 0; y < 8; y++) {
@@ -111,18 +110,30 @@ public class TimerGame extends AppCompatActivity {
             }
         }
     }
-
     private void onTileClicked(Tile tile, Board board) {
 
         if ( tile.getPiece() != null && currentTurn.isWhiteSide() == tile.getPiece().isWhite()) {
             if(swapTile != null){
                 buttons[swapTile.getX()][swapTile.getY()].setBackground(tempTileColorSelectedPiece);
+                if(isWhiteChecked && tile.getPiece() != null && tile.getPiece().isWhite() && tile.getPiece() instanceof King){
+                    buttons[whiteKingPosition[0]][whiteKingPosition[1]].setBackground(getDrawable(R.drawable.red_tile));
+
+                }
+                if (isBlackChecked && tile.getPiece() != null && !tile.getPiece().isWhite() && tile.getPiece() instanceof King){
+                    buttons[blackKingPosition[0]][blackKingPosition[1]].setBackground(getDrawable(R.drawable.red_tile));
+                }
             }
             swapTile = tile;
             swapPiece = tile.getPiece();
             tempTileColorSelectedPiece = buttons[swapTile.getX()][swapTile.getY()].getBackground();
-            if((swapTile.getX()+swapTile.getY()) % 2 == 0){
-                buttons[swapTile.getX()][swapTile.getY()].setBackground(getDrawable(R.drawable.green_tile_lighted));
+            if(isWhiteChecked && tile.getPiece() != null && tile.getPiece().isWhite() && tile.getPiece() instanceof King){
+                buttons[swapTile.getX()][swapTile.getY()].setBackground(getDrawable(R.drawable.red_tile_lighted));
+            }
+            else if (isBlackChecked && tile.getPiece() != null && !tile.getPiece().isWhite() && tile.getPiece() instanceof King){
+                buttons[swapTile.getX()][swapTile.getY()].setBackground(getDrawable(R.drawable.red_tile_lighted));
+            }
+            else if((swapTile.getX()+swapTile.getY()) % 2 == 0){
+                buttons[swapTile.getX()][swapTile.getY()].setBackground(getDrawable(R.drawable.blue_tile_lighted));
             }
             else{
                 buttons[swapTile.getX()][swapTile.getY()].setBackground(getDrawable(R.drawable.white_tile_lighted));
@@ -157,6 +168,11 @@ public class TimerGame extends AppCompatActivity {
                             if (isDrawByInsufficientMaterial(board)){
                                 status = GameStatus.INSUFFICIENT_MATERIAL_DRAW;
                                 showGameEndDialog("Draw by insufficient material");
+                            }
+                            updateBoardStateHistory();
+                            if (isDrawByRepetition()){
+                                status = GameStatus.DRAW_BY_REPETITION;
+                                showGameEndDialog("Draw by repetition");
                             }
                         }
                         else{
@@ -200,6 +216,11 @@ public class TimerGame extends AppCompatActivity {
                                 status = GameStatus.INSUFFICIENT_MATERIAL_DRAW;
                                 showGameEndDialog("Draw by insufficient material");
                             }
+                            updateBoardStateHistory();
+                            if (isDrawByRepetition()){
+                                status = GameStatus.DRAW_BY_REPETITION;
+                                showGameEndDialog("Draw by repetition");
+                            }
                         }
                         else{
                             tile.setPiece(tempPiece);
@@ -232,6 +253,11 @@ public class TimerGame extends AppCompatActivity {
                             if (isDrawByInsufficientMaterial(board)){
                                 status = GameStatus.INSUFFICIENT_MATERIAL_DRAW;
                                 showGameEndDialog("Draw by insufficient material");
+                            }
+                            updateBoardStateHistory();
+                            if (isDrawByRepetition()){
+                                status = GameStatus.DRAW_BY_REPETITION;
+                                showGameEndDialog("Draw by repetition");
                             }
                         }
                         else{
@@ -275,6 +301,11 @@ public class TimerGame extends AppCompatActivity {
                             if (isDrawByInsufficientMaterial(board)){
                                 status = GameStatus.INSUFFICIENT_MATERIAL_DRAW;
                                 showGameEndDialog("Draw by insufficient material");
+                            }
+                            updateBoardStateHistory();
+                            if (isDrawByRepetition()){
+                                status = GameStatus.DRAW_BY_REPETITION;
+                                showGameEndDialog("Draw by repetition");
                             }
                         }
                         else{
@@ -330,6 +361,11 @@ public class TimerGame extends AppCompatActivity {
                             status = GameStatus.INSUFFICIENT_MATERIAL_DRAW;
                             showGameEndDialog("Draw by insufficient material");
                         }
+                        updateBoardStateHistory();
+                        if (isDrawByRepetition()){
+                            status = GameStatus.DRAW_BY_REPETITION;
+                            showGameEndDialog("Draw by repetition");
+                        }
                     }
                     else if (!currentTurn.isWhiteSide() && !((King) board.getBox(blackKingPosition[0], blackKingPosition[1]).getPiece()).isKingChecked(board, board.getBox(blackKingPosition[0], blackKingPosition[1]), (King) board.getBox(blackKingPosition[0], blackKingPosition[1]).getPiece())){
                         if (swapPiece instanceof Pawn ){
@@ -366,6 +402,11 @@ public class TimerGame extends AppCompatActivity {
                             status = GameStatus.INSUFFICIENT_MATERIAL_DRAW;
                             showGameEndDialog("Draw by insufficient material");
                         }
+                        updateBoardStateHistory();
+                        if (isDrawByRepetition()){
+                            status = GameStatus.DRAW_BY_REPETITION;
+                            showGameEndDialog("Draw by repetition");
+                        }
                     }
                     else{
 
@@ -382,11 +423,34 @@ public class TimerGame extends AppCompatActivity {
                     }
                 }
             }
-        buttons[swapTile.getX()][swapTile.getY()].setBackground(tempTileColorSelectedPiece);
-        isFirstClick = true;
+
+
+
+            if((swapTile.getX()+swapTile.getY()) % 2 == 0 ){
+                buttons[swapTile.getX()][swapTile.getY()].setBackground(getDrawable(R.drawable.blue_tile));
+                tempTileColorSelectedPiece = getDrawable(R.drawable.blue_tile);
+                if (swapTile.getX() == whiteKingPosition[0] && swapTile.getY() ==whiteKingPosition[1] && isWhiteChecked){
+                    tempTileColorSelectedPiece = getDrawable(R.drawable.red_tile);
+                }
+            }
+            if ((swapTile.getX()+swapTile.getY()) % 2 == 1){
+                buttons[swapTile.getX()][swapTile.getY()].setBackground(getDrawable(R.drawable.white_tile));
+                tempTileColorSelectedPiece = getDrawable(R.drawable.white_tile);
+                if (swapTile.getX() == blackKingPosition[0] && swapTile.getY() ==blackKingPosition[1] && isBlackChecked){
+                    tempTileColorSelectedPiece = getDrawable(R.drawable.red_tile);
+                }
+            }
+            if(isWhiteChecked && tile.getPiece() != null && tile.getPiece().isWhite() && tile.getPiece() instanceof King){
+                buttons[whiteKingPosition[0]][whiteKingPosition[1]].setBackground(getDrawable(R.drawable.red_tile));
+
+            }
+            if (isBlackChecked && tile.getPiece() != null && !tile.getPiece().isWhite() && tile.getPiece() instanceof King){
+                buttons[blackKingPosition[0]][blackKingPosition[1]].setBackground(getDrawable(R.drawable.red_tile));
+            }
+
+            isFirstClick = true;
         }
     }
-
     private void update_board(){
             for (int x = 0; x < 8; x++) {
                 for (int y = 0; y < 8; y++) {
@@ -405,7 +469,6 @@ public class TimerGame extends AppCompatActivity {
                 }
             }
         }
-
     public void removeButtonImage(String buttonIdString) {
         int resID = getResources().getIdentifier(buttonIdString, "id", getPackageName());
         ImageButton button = findViewById(resID);
@@ -413,14 +476,12 @@ public class TimerGame extends AppCompatActivity {
             button.setImageResource(0); // Removes the image
         }
     }
-
     private void updateCountDownText(TextView textView, long timeInMillis) {
         int minutes = (int) (timeInMillis / 1000) / 60;
         int seconds = (int) (timeInMillis / 1000) % 60;
         String timeFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
         textView.setText(timeFormatted);
     }
-
     private void switchTurn(int time) {
         if (currentTurn == players[0]) {
             currentTurn = players[1];
@@ -487,7 +548,6 @@ public class TimerGame extends AppCompatActivity {
         AlertDialog dialog = builder.create();
         dialog.show();
     }
-
     private void restartActivity() {
         Intent intent = getIntent();
         finish();
@@ -557,7 +617,6 @@ public class TimerGame extends AppCompatActivity {
         }
         update_board();
     }
-
     public void showPawnPromotionDialog(Board board, Tile start, Tile end, Boolean white) {
         CharSequence[] items = {"Queen", "Rook", "Bishop", "Knight"};
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -579,7 +638,6 @@ public class TimerGame extends AppCompatActivity {
         AlertDialog dialog = builder.create();
         dialog.show();
     }
-
     private boolean isStaleMate(Board board){
 
         if (currentTurn.isWhiteSide()){
@@ -663,7 +721,6 @@ public class TimerGame extends AppCompatActivity {
         }
         return true;
     }
-
     private boolean isDrawByInsufficientMaterial(Board board){
         int whiteKnights = 0;
         int blackKnights = 0;
@@ -714,18 +771,40 @@ public class TimerGame extends AppCompatActivity {
         }
         return false;
     }
-
     public static TimerGame getCurrentInstance() {
         return currentInstance;
     }
-
-    // Ensure you clear the static reference when the activity is destroyed
     @Override
     protected void onDestroy() {
         super.onDestroy();
         currentInstance = null;
     }
+    private void updateBoardStateHistory() {
+        String currentState = getBoardStateAsString();
+        boardStateHistory.put(currentState, boardStateHistory.getOrDefault(currentState, 0) + 1);
+    }
+    private String getBoardStateAsString() {
+        StringBuilder sb = new StringBuilder();
+        for (int x = 0; x < 8; x++) { // Assuming board.getSize() gives board dimensions
+            for (int y = 0; y < 8; y++) {
+                Tile tile = board.getBox(x, y);
+                if (tile.getPiece() != null) {
+                    // Assuming getPiece() returns a piece which has a meaningful toString() method
+                    sb.append(tile.getPiece().toString());
+                }
+                sb.append("|"); // Separator between tiles
+            }
+            sb.append("\n"); // New line for each row for readability
+        }
+        return sb.toString();
+    }
+    private boolean isDrawByRepetition() {
+        String currentState = getBoardStateAsString();
+        return boardStateHistory.getOrDefault(currentState, 0) >= 3;
+    }
 
 }
+
+
 
 

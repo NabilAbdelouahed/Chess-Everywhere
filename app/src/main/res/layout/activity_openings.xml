@@ -31,70 +31,80 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="switch_to_opening_info"
-        android:text="The King's Pawn Opening (e4)" />
+        android:text="The King's Pawn Opening (e4)"
+        android:textColor="@color/white"/>
 
     <Button
         android:id="@+id/op2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="switch_to_opening_info"
-        android:text="The Queen's Pawn Opening (d4)" />
+        android:text="The Queen's Pawn Opening (d4)"
+        android:textColor="@color/white"/>
 
     <Button
         android:id="@+id/op3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="switch_to_opening_info"
-        android:text="The Sicilian Defense (c5)" />
+        android:text="The Sicilian Defense (c5)"
+        android:textColor="@color/white"/>
 
     <Button
         android:id="@+id/op4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="switch_to_opening_info"
-        android:text="The Ruy Lopez (Bb5)" />
+        android:text="The Ruy Lopez (Bb5)"
+        android:textColor="@color/white"/>
 
     <Button
         android:id="@+id/op5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="switch_to_opening_info"
-        android:text="The French Defense (e6)" />
+        android:text="The French Defense (e6)"
+        android:textColor="@color/white"/>
 
     <Button
         android:id="@+id/op6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="switch_to_opening_info"
-        android:text="The English Opening (c4)" />
+        android:text="The English Opening (c4)"
+        android:textColor="@color/white"/>
 
     <Button
         android:id="@+id/op7"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="switch_to_opening_info"
-        android:text="The Italian Game (Bc4)" />
+        android:text="The Italian Game (Bc4)"
+        android:textColor="@color/white"/>
 
     <Button
         android:id="@+id/op8"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="switch_to_opening_info"
-        android:text="The Caro-Kann Defense (c6)" />
+        android:text="The Caro-Kann Defense (c6)"
+        android:textColor="@color/white"/>
 
     <Button
         android:id="@+id/op9"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="switch_to_opening_info"
-        android:text="The Slav Defense" />
+        android:text="The Slav Defense"
+        android:textColor="@color/white"/>
 
     <Button
         android:id="@+id/op10"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="switch_to_opening_info"
-        android:text="The Nimzo-Indian Defense" />
+        android:text="The Nimzo-Indian Defense"
+        android:textColor="@color/white"/>
 
     <Space
         android:layout_width="match_parent"
