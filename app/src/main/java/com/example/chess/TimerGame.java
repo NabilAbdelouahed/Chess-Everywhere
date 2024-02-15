@@ -114,13 +114,14 @@ public class TimerGame extends AppCompatActivity {
 
         if ( tile.getPiece() != null && currentTurn.isWhiteSide() == tile.getPiece().isWhite()) {
             if(swapTile != null){
-                buttons[swapTile.getX()][swapTile.getY()].setBackground(tempTileColorSelectedPiece);
                 if(isWhiteChecked && tile.getPiece() != null && tile.getPiece().isWhite() && tile.getPiece() instanceof King){
                     buttons[whiteKingPosition[0]][whiteKingPosition[1]].setBackground(getDrawable(R.drawable.red_tile));
-
                 }
-                if (isBlackChecked && tile.getPiece() != null && !tile.getPiece().isWhite() && tile.getPiece() instanceof King){
+                else if (isBlackChecked && tile.getPiece() != null && !tile.getPiece().isWhite() && tile.getPiece() instanceof King){
                     buttons[blackKingPosition[0]][blackKingPosition[1]].setBackground(getDrawable(R.drawable.red_tile));
+                }
+                else {
+                    buttons[swapTile.getX()][swapTile.getY()].setBackground(tempTileColorSelectedPiece);
                 }
             }
             swapTile = tile;
@@ -427,25 +428,27 @@ public class TimerGame extends AppCompatActivity {
 
 
             if((swapTile.getX()+swapTile.getY()) % 2 == 0 ){
-                buttons[swapTile.getX()][swapTile.getY()].setBackground(getDrawable(R.drawable.blue_tile));
-                tempTileColorSelectedPiece = getDrawable(R.drawable.blue_tile);
                 if (swapTile.getX() == whiteKingPosition[0] && swapTile.getY() ==whiteKingPosition[1] && isWhiteChecked){
+                    buttons[whiteKingPosition[0]][whiteKingPosition[1]].setBackground(getDrawable(R.drawable.red_tile));
                     tempTileColorSelectedPiece = getDrawable(R.drawable.red_tile);
                 }
-            }
-            if ((swapTile.getX()+swapTile.getY()) % 2 == 1){
-                buttons[swapTile.getX()][swapTile.getY()].setBackground(getDrawable(R.drawable.white_tile));
-                tempTileColorSelectedPiece = getDrawable(R.drawable.white_tile);
-                if (swapTile.getX() == blackKingPosition[0] && swapTile.getY() ==blackKingPosition[1] && isBlackChecked){
-                    tempTileColorSelectedPiece = getDrawable(R.drawable.red_tile);
+
+                else {
+                    buttons[swapTile.getX()][swapTile.getY()].setBackground(getDrawable(R.drawable.blue_tile));
+                    tempTileColorSelectedPiece = getDrawable(R.drawable.blue_tile);
                 }
-            }
-            if(isWhiteChecked && tile.getPiece() != null && tile.getPiece().isWhite() && tile.getPiece() instanceof King){
-                buttons[whiteKingPosition[0]][whiteKingPosition[1]].setBackground(getDrawable(R.drawable.red_tile));
 
             }
-            if (isBlackChecked && tile.getPiece() != null && !tile.getPiece().isWhite() && tile.getPiece() instanceof King){
-                buttons[blackKingPosition[0]][blackKingPosition[1]].setBackground(getDrawable(R.drawable.red_tile));
+            if ((swapTile.getX()+swapTile.getY()) % 2 == 1){
+                if (swapTile.getX() == blackKingPosition[0] && swapTile.getY() ==blackKingPosition[1] && isBlackChecked){
+                    buttons[blackKingPosition[0]][blackKingPosition[1]].setBackground(getDrawable(R.drawable.red_tile));
+                    tempTileColorSelectedPiece = getDrawable(R.drawable.red_tile);
+                }
+                else {
+                    buttons[swapTile.getX()][swapTile.getY()].setBackground(getDrawable(R.drawable.white_tile));
+                    tempTileColorSelectedPiece = getDrawable(R.drawable.white_tile);
+                }
+
             }
 
             isFirstClick = true;
