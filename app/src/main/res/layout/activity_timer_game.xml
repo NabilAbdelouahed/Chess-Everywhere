@@ -521,9 +521,10 @@
         android:id="@+id/resignWhite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="resign"
+        android:rotation="180"
         android:text="Resign"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:onClick="resign" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
