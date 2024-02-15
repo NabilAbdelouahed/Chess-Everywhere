@@ -521,8 +521,10 @@ public class TimerGame extends AppCompatActivity {
         }
     }
     private void showGameEndDialog(String message) {
-        timerPlayer1.pause();
-        timerPlayer2.pause();
+        if (time != -1) {
+            timerPlayer1.pause();
+            timerPlayer2.pause();
+        }
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(message);
         builder.setPositiveButton("Restart", new DialogInterface.OnClickListener() {
@@ -572,8 +574,10 @@ public class TimerGame extends AppCompatActivity {
         builder1.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                timerPlayer1.pause();
-                timerPlayer2.pause();
+                if (time != -1) {
+                    timerPlayer1.pause();
+                    timerPlayer2.pause();
+                }
                 AlertDialog.Builder builder2 = new AlertDialog.Builder(TimerGame.this);
                 builder2.setMessage(message);
                 builder2.setPositiveButton("Restart", new DialogInterface.OnClickListener() {
