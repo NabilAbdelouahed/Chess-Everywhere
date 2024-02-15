@@ -12,7 +12,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:columnCount="6"
-        android:rowCount="1">
+        android:rowCount="1"
+        android:gravity="center">
 
         <ImageButton
             android:id="@+id/spare_king_b"
@@ -77,13 +78,14 @@
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="50dp" />
+        android:layout_height="24dp" />
 
     <GridLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:columnCount="8"
-        android:rowCount="8">
+        android:rowCount="8"
+        android:gravity="center">
 
         <ImageButton
             android:id="@+id/button70"
@@ -699,13 +701,14 @@
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="50dp" />
+        android:layout_height="24dp" />
 
     <GridLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:columnCount="6"
-        android:rowCount="1">
+        android:rowCount="1"
+        android:gravity="center">>
 
         <ImageButton
             android:id="@+id/spare_king_w"

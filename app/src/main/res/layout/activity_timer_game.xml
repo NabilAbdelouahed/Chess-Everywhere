@@ -13,10 +13,10 @@
         android:id="@+id/resignBlack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="resign"
         android:rotation="180"
         android:text="Resign"
-        android:textColor="@color/white"
-        android:onClick="resign" />
+        android:textColor="@color/white" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -521,10 +521,10 @@
         android:id="@+id/resignWhite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="resign"
         android:rotation="180"
         android:text="Resign"
-        android:textColor="@color/white"
-        android:onClick="resign" />
+        android:textColor="@color/white" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
