@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#333333"
     tools:context=".About">
 
     <TextView
@@ -20,7 +21,7 @@ The app allows you to enjoy a good game of chess with a friend without the need 
 \n
 You can also use the free mode to let loose of your imagination or simply recreate a position you want to think about. \n
 \n
-You can also have a quick look at some brief information about some openings.\n
+You can also have a quick look at some brief information about a few openings.\n
 \n
 I hope you enjoy the app ! \n
 \n

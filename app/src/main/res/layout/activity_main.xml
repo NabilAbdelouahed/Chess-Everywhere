@@ -9,53 +9,68 @@
 
     <Button
         android:id="@+id/play"
-        android:layout_width="192dp"
-        android:layout_height="69dp"
-        android:layout_marginTop="100dp"
+        android:layout_width="200dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="70dp"
         android:onClick="switch_to_play_view"
         android:text="Play"
         android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        android:textSize="18dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/openings"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
 
     <Button
         android:id="@+id/openings"
-        android:layout_width="192dp"
-        android:layout_height="69dp"
-        android:layout_marginTop="92dp"
+        android:layout_width="200dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="70dp"
         android:text="Openings"
+        android:textSize="18dp"
         android:textColor="@color/white"
         android:onClick="switch_to_opening_view"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintTop_toBottomOf="@+id/play"
+        app:layout_constraintBottom_toTopOf="@+id/free_mode"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/play" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/free_mode"
-        android:layout_width="192dp"
-        android:layout_height="69dp"
-        android:layout_marginTop="92dp"
+        android:layout_width="200dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="70dp"
         android:text="Free Mode"
+        android:textSize="18dp"
         android:textColor="@color/white"
         android:onClick="switch_to_free_mode_view"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintTop_toBottomOf="@+id/openings"
+        app:layout_constraintBottom_toTopOf="@+id/about"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/openings" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/about"
-        android:layout_width="192dp"
-        android:layout_height="69dp"
-        android:layout_marginTop="252dp"
+        android:layout_width="200dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginBottom="50dp"
         android:onClick="switch_to_about_view"
         android:text="About"
+        android:textSize="18dp"
         android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintTop_toBottomOf="@+id/free_mode"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/openings" />
+        app:layout_constraintEnd_toEndOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
