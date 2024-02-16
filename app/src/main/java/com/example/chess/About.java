@@ -16,7 +16,7 @@ public class About extends AppCompatActivity {
     }
 
     public void contact_us(View view) {
-        String email = "chessmate.service@gmail.com";
+        String email = "nab.service.pro@outlook.com";
         String subject = "I have a Report/Review";
 
         Intent intent = new Intent(Intent.ACTION_SENDTO);

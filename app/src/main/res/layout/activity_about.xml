@@ -11,7 +11,7 @@
         android:id="@+id/textView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="ChessMate is a chess app, completely crafted by Nabil Abdelouahed. \n\nThe app allows you to enjoy a good game of chess with a friend without the need for an internet connection or an account. \n\nYou can also use the free mode to let loose of your imagination or simply recreate a position you want to think about. \n\nYou can also have a quick look at some brief information about a few openings.\n\nI hope you enjoy the app ! \n\nDon't hesitate to share your experience with a review or by reporting a bug. To do so, you can press the button bellow."
+        android:text="Chess everywhere is a chess app, completely crafted by Nabil Abdelouahed. \n\nThe app allows you to enjoy a good game of chess with a friend without the need for an internet connection or an account. \n\nYou can also use the free mode to let loose of your imagination or simply recreate a position you want to think about. \n\nYou can also have a quick look at some brief information about a few openings.\n\nI hope you enjoy the app ! \n\nDon't hesitate to share your experience with a review or by reporting a bug. To do so, you can press the button bellow."
         android:textColor="@color/white"
         android:textSize="18dp"
         android:layout_marginStart="24dp"
