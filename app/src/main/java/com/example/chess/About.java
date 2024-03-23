@@ -15,14 +15,4 @@ public class About extends AppCompatActivity {
         setContentView(R.layout.activity_about);
     }
 
-    public void contact_us(View view) {
-        String email = "nab.service.pro@outlook.com";
-        String subject = "I have a Report/Review";
-
-        Intent intent = new Intent(Intent.ACTION_SENDTO);
-        intent.setData(Uri.parse("mailto:"));
-        intent.putExtra(Intent.EXTRA_EMAIL, new String[]{email});
-        intent.putExtra(Intent.EXTRA_SUBJECT, subject);
-        startActivity(Intent.createChooser(intent, "Choose an email client:"));
-    }
 }
