@@ -1,0 +1,1 @@
+A fun android chess mobile app. You can play games with timers ( 1m, 3m, 10m ) or no timer. There is also a free mode where you can do whatever you want and add as many pieces as you want. It's ideal to recreate puzzles or have creative games with made up rules. There is also an opening section where you can choose an opening from a small list and have some some details about it.
